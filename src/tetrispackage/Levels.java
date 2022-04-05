@@ -1,5 +1,5 @@
 package tetrispackage;
 
-public enum Levels {
-	BEGINNER, EASY, NORMAL, HARD, LEGEND;
+public interface Levels {
+	double BEGINNER = 2, EASY = 1, NORMAL = 0.5, HARD = 0.25, LEGEND = 0.1;
 }
