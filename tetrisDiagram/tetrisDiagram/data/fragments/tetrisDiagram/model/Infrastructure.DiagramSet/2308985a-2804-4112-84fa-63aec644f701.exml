@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="tetrisDiagram" version="4">
+  <OBJECT>
+    <ID name="tetrisDiagram" mc="Infrastructure.DiagramSet" uid="2308985a-2804-4112-84fa-63aec644f701"/>
+    <PID name="tetrisDiagram" mc="Standard.Project" uid="4759f1c0-8182-417b-a0e7-63e5890db9b4"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[tetrisDiagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
