@@ -2,17 +2,18 @@ package tetrispackage;
 import java.util.*;
 
 public class Grid {
-    private ArrayList<ArrayList<Integer>> grid;
+    public int[][] grid;
 
     public Grid() {
-    }
-
-    public Grid(Grid g) {
+    	grid = new int[10][20];
     }
 
     public Grid(int x, int y) {
     }
     
+    public int[][] getGrid() {
+    	return this.grid;
+    }
     public boolean isFilled() {
 		return false;
     }
