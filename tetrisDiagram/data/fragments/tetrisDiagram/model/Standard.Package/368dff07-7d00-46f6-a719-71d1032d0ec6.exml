@@ -15,6 +15,14 @@
     <DEPENDENCIES>
       <COMP relation="OwnedElement">
         <COMPID name="Grid" mc="Standard.Class" uid="29157e39-d1ca-445a-81e9-985cbe0d205b"/>
+        <COMPID name="Shape" mc="Standard.Class" uid="4e255721-56f4-475f-8dd4-e930b1dee007"/>
+        <COMPID name="OPiece" mc="Standard.Class" uid="d9de94f8-e3e3-4848-aeb2-610e3e30698f"/>
+        <COMPID name="TPiece" mc="Standard.Class" uid="2620fa3e-2b2c-44a2-b22d-55a9ddd68c7d"/>
+        <COMPID name="IPiece" mc="Standard.Class" uid="98992dd4-254f-4056-92af-47fbedaad3a1"/>
+        <COMPID name="SPiece" mc="Standard.Class" uid="caa6afec-1bdd-4830-8ee9-2210978ed361"/>
+        <COMPID name="LPiece" mc="Standard.Class" uid="37fd9f6f-0665-41a0-9e9c-ca663239b4bf"/>
+        <COMPID name="TetrisGame" mc="Standard.Class" uid="54c462cc-cd85-4515-ac8c-79b8aebe92b9"/>
+        <COMPID name="EnumLevel" mc="Standard.Interface" uid="8cd3e4f7-1323-425d-99f7-2b6800840eb9"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="Diagramme de classe tetrisdiagram" mc="Standard.ClassDiagram" uid="cfba7092-d930-4a43-a8f7-8f7587787b8f"/>
