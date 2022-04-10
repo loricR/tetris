@@ -16,6 +16,11 @@ public class TetrisGame extends JFrame{
 	
 	public static void main(String[] args) {
 		Grid grid = new Grid();
+		for(int i=0; i<10; i++) {
+			for(int j=0; j<20; j++) {
+				System.out.println(grid.getGrid()[i][j]);
+			}
+		}
 		TetrisGame monJeu = new TetrisGame();
 		monJeu.afficherFenetre();
 	}
