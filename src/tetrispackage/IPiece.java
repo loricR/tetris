@@ -2,9 +2,18 @@ package tetrispackage;
 import java.util.*;
 
 public class IPiece extends Shape {
-    private  ArrayList<ArrayList<Integer>> I;
     
     public IPiece() {
+    	super();
+    	fillPiece();
     }
 
+    public void fillPiece() {
+    	int[][] tmp = {{0,0,0,0}, 
+    				   {0,0,0,0}, 
+    				   {0,0,0,0}, 
+    				   {1,1,1,1}};
+    	this.piece = tmp;
+    	
+    }	
 }
