@@ -1,16 +1,20 @@
 package tetrispackage;
 import java.util.*;
 
-public class TPiece extends Shape {
+public class ZPiece extends Shape {
 
-    public TPiece() {
+    public ZPiece() {
     	super();
     	fillPiece();
     }
     
     public void fillPiece() {
-    	int[][] tmp = {{0,0,0,0}, {0,0,0,0}, {0,1,0,0}, {1,1,1,0}};
+    	int[][] tmp = {{0,0,0,0}, 
+    				   {0,0,0,0}, 
+    				   {0,1,1,0}, 
+    				   {0,0,1,1}};
     	this.piece = tmp;
     	
     }	
+
 }
