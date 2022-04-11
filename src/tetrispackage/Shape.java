@@ -33,7 +33,7 @@ public abstract class Shape {
     }
     
     public void down() {
-    	position++;
+    	positionY++;
     }
     
 

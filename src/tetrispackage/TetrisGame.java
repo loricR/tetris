@@ -6,19 +6,11 @@ import javax.swing.*;
 public class TetrisGame extends JFrame{
 	
 	private Levels level;
-	
-	public void afficherFenetre() {
-		JFrame window = new JFrame();
-		window.setSize(600,800);
-		window.setVisible(true);
-		Container c = this.getContentPane();
-	}
-	
+		
 	public static void main(String[] args) {
+		
+		
 		Grid grid = new Grid();
-		
-		
-		
 		
 		Shape shape = new ZPiece();
 		System.out.println(shape.piece);
@@ -40,8 +32,11 @@ public class TetrisGame extends JFrame{
 		
 		
 		
-		TetrisGame monJeu = new TetrisGame();
-		monJeu.afficherFenetre();
-	}
+		//Tests pour l'affichage graphique :
+		Window graph = new Window();
+		
+		
+		
+		}
 	
 }
