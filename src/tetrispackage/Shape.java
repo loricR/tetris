@@ -5,35 +5,94 @@ import javax.swing.*;
 public abstract class Shape {
 
 	protected int[][] piece;
-	private int positionX;
-	private int positionY;
+	protected int[][] coord;
 	
 	public abstract void fillPiece();
+	public abstract void setSpawnCoord();
+	public abstract void rotate();
 	
 	public Shape() {
 		this.piece = new int[4][4];
+		this.coord = new int[4][2];
 	}
 	
 	public int[][] getPiece() {
 		return this.piece;
 	}
 	
-	public void setPositionX(int x) {
-		this.positionX = x;
+	public int getCoordX(int index) {
+		return this.coord[index][0];
+	}
+	public int getCoordY(int index) {
+		return this.coord[index][1];
 	}
 	
-	public void setPositionY(int y) {
-		this.positionY = y;
+	public void setCoord(int index, int x, int y) {
+		int tmp[] = {x, y};
+		this.coord[index] = tmp;
 	}
-	
-    public void rotate() {
-    }
 
-    public void move() {
+    public void moveRight() {
+    	if(!isStuckRight())
+		{
+	    	for(int i=0; i<4; i++) 
+	    	{	
+	    		setCoord(i, coord[i][0]+1, coord[i][1]);
+	    	}
+		}
+    }
+    
+    public void moveLeft() {
+    	if(!isStuckLeft())
+		{
+	    	for(int i=0; i<4; i++) 
+	    	{
+	    		setCoord(i, coord[i][0]-1, coord[i][1]);
+	    	}
+		}
     }
     
     public void down() {
-    	positionY++;
+    	if(!isStuckDown())
+    	{
+	    	for(int i=0; i<4; i++) 
+	    	{
+	    		setCoord(i, coord[i][0], coord[i][1]+1);	
+	    	}
+    	}
+    }
+    
+    public boolean isStuckLeft() {
+    	for(int i=0; i<4; i++) 
+    	{
+	    	if(coord[i][0] <= 0)
+			{
+				return true;
+			}
+    	}
+    	return false;
+    }
+    
+    public boolean isStuckRight() {
+    	for(int i=0; i<4; i++) 
+    	{
+	    	if(coord[i][0] >= 9)
+			{
+				return true;
+			}
+    	}
+    	return false;
+    }
+    
+    public boolean isStuckDown() {
+    	for(int i=0; i<4; i++) 
+    	{
+	    	if(coord[i][1] >= 19)
+			{
+				return true;
+			}
+    	}
+    	return false;
     }
     
 
