@@ -6,6 +6,7 @@ public class LPiece extends Shape {
     public LPiece() {
     	super();
     	fillPiece();
+    	setSpawnCoord();
     }
     
     public void fillPiece() {
@@ -13,7 +14,16 @@ public class LPiece extends Shape {
     				   {0,0,0,0}, 
     				   {0,0,1,0}, 
     				   {1,1,1,0}};
-    	this.piece = tmp;
-    	
+    	this.piece = tmp;	
     }	
+    
+    public void setSpawnCoord() {
+    	int[][] tmp = {{5,0},
+    				   {3,1},
+    				   {4,1},
+    				   {5,1}};
+    	for(int i=0; i<4; i++) {
+    		this.coord[i] = tmp[i];
+    	}
+    }
 }
