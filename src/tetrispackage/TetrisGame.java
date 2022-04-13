@@ -11,6 +11,12 @@ public class TetrisGame extends JFrame{
 		
 	public static void main(String[] args) {
 		
+		//Tests pour l'affichage graphique :
+		GraphicGrid test = new GraphicGrid();
+		test.showGrid();
+	    
+	    
+		
 		
 		Grid grid = new Grid();
 		
@@ -63,10 +69,6 @@ public class TetrisGame extends JFrame{
 		      }
 		}
 		
-		
-		
-		//Tests pour l'affichage graphique :
-		//Window graph = new Window();
 		
 		
 		
