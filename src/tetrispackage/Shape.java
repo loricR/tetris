@@ -4,19 +4,22 @@ import javax.swing.*;
 
 public abstract class Shape {
 
-	protected int[][] piece;
+	//protected int[][] piece;
+	protected int[][][] piece;
 	protected int[][] coord;
+	protected int rotation;
 	
 	public abstract void fillPiece();
 	public abstract void setSpawnCoord();
-	public abstract void rotate();
 	
 	public Shape() {
-		this.piece = new int[4][4];
+		//this.piece = new int[4][4];
 		this.coord = new int[4][2];
+		this.rotation = 0;
+		this.piece = new int[4][4][2];
 	}
 	
-	public int[][] getPiece() {
+	public int[][][] getPiece() {
 		return this.piece;
 	}
 	
@@ -93,6 +96,25 @@ public abstract class Shape {
 			}
     	}
     	return false;
+    }
+    
+    public void rotate() {
+    	int x0 = this.getCoordX(0);
+    	int y0 = this.getCoordY(0);
+    	
+    	if(this.rotation == 0 || this.rotation == 1 || this.rotation == 2)
+    	{
+    		this.rotation +=1;
+    	}
+    	else if(this.rotation == 3)
+    	{
+    		this.rotation = 0;
+    	}
+    	
+    	for(int i=0; i<4; i++)
+		{
+    		this.setCoord(i, x0 + piece[rotation][i][0], y0 + piece[rotation][i][1]);
+		}
     }
     
 

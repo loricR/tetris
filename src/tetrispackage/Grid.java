@@ -22,12 +22,9 @@ public class Grid {
     public void spawnPiece(Shape shape) {
     	curPiece = shape;
     	
-    	for(int i=0; i<2; i++) 
+    	for(int i=0; i<4; i++)
     	{
-    		for(int j=0; j<4; j++)
-    		{
-    			grid[i][j+3] = curPiece.piece[i+2][j]; //On met les deux lignes du bas dans la grille
-    		}
+    		grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1;
     	}
     }
     
@@ -38,6 +35,7 @@ public class Grid {
     	}
     	curPiece.down();
     	curPiece.moveLeft();
+    	curPiece.rotate();
     	for(int i=0; i<4; i++) {
         	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1; //On remplace la piece aux nouvelles coordonnées
     	}
