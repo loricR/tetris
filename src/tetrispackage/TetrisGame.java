@@ -14,7 +14,7 @@ public class TetrisGame extends JFrame{
 		
 		Grid grid = new Grid();
 		
-		Shape shape = new OPiece();
+		Shape shape = new IPiece();
 		/*System.out.println(shape.piece);
 		for (int i = 0;i < shape.piece.length; i++) {
 	         for (int j = 0;j < shape.piece[i].length;j++) {
@@ -42,8 +42,41 @@ public class TetrisGame extends JFrame{
 	         }
 	         System.out.println();
 	      }
+		grid.refreshPosition(shape);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		for (int i = 0;i < grid.getGrid().length; i++) {
+	         for (int j = 0;j < grid.getGrid()[i].length;j++) {
+	            //grid.getGrid()[i][j] = i + j;
+	            System.out.print(grid.getGrid()[i][j] + " ");
+	         }
+	         System.out.println();
+	      }
+		grid.refreshPosition(shape);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		for (int i = 0;i < grid.getGrid().length; i++) {
+	         for (int j = 0;j < grid.getGrid()[i].length;j++) {
+	            //grid.getGrid()[i][j] = i + j;
+	            System.out.print(grid.getGrid()[i][j] + " ");
+	         }
+	         System.out.println();
+	      }
+		grid.refreshPosition(shape);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		for (int i = 0;i < grid.getGrid().length; i++) {
+	         for (int j = 0;j < grid.getGrid()[i].length;j++) {
+	            //grid.getGrid()[i][j] = i + j;
+	            System.out.print(grid.getGrid()[i][j] + " ");
+	         }
+	         System.out.println();
+	      }
 	
-		while(true) {
+		/*while(true) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -61,7 +94,7 @@ public class TetrisGame extends JFrame{
 		         }
 		         System.out.println();
 		      }
-		}
+		}*/
 		
 		
 		
