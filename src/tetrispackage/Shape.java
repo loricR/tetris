@@ -1,22 +1,26 @@
 package tetrispackage;
 import java.util.*;
 import javax.swing.*;
+import java.awt.Color;
 
 public abstract class Shape {
 
-	//protected int[][] piece;
 	protected int[][][] piece;
 	protected int[][] coord;
 	protected int rotation;
+	protected Color color;
 	
 	public abstract void fillPiece();
 	public abstract void setSpawnCoord();
 	
 	public Shape() {
-		//this.piece = new int[4][4];
 		this.coord = new int[4][2];
 		this.rotation = 0;
 		this.piece = new int[4][4][2];
+	}
+	
+	public Color getColor() {
+		return this.color;
 	}
 	
 	public int[][][] getPiece() {

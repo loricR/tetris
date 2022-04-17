@@ -1,4 +1,5 @@
 package tetrispackage;
+import java.awt.Color;
 import java.util.*;
 
 public class ZPiece extends Shape {
@@ -7,6 +8,7 @@ public class ZPiece extends Shape {
     	super();
     	fillPiece();
     	setSpawnCoord();
+    	this.color = Color.RED;
     }
     
     public void fillPiece() {

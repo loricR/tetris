@@ -1,5 +1,6 @@
 package tetrispackage;
 import java.util.*;
+import java.awt.Color;
 
 public class Grid {
     private int[][] grid;
@@ -15,6 +16,11 @@ public class Grid {
     public int[][] getGrid() {
     	return this.grid;
     }
+    
+    public Shape getCurPiece() {
+    	return this.curPiece;
+    }
+    
     public boolean isFilled() {
 		return false;
     }
@@ -35,7 +41,7 @@ public class Grid {
     	}
     	curPiece.down();
     	curPiece.moveLeft();
-    	curPiece.rotate();
+    	//curPiece.rotate();
     	for(int i=0; i<4; i++) {
         	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1; //On remplace la piece aux nouvelles coordonnées
     	}
