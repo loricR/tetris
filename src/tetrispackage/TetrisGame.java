@@ -1,4 +1,5 @@
 package tetrispackage;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -12,37 +13,40 @@ public class TetrisGame extends JFrame{
 		
 	public static void main(String[] args) {
 	
-		Grid grid = new Grid();
-		Gui gui = new Gui();
-		gui.setVisible(true);
+		GameLoop tetris = new GameLoop();
 		
-		Shape shape = new IPiece();
-		grid.spawnPiece(shape);
-		
-		while(!shape.isStuckDown()) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			grid.refreshPosition(shape);
-			gui.refreshGridGui(grid);
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			for (int i = 0;i < grid.getGrid().length; i++) {
-		         for (int j = 0;j < grid.getGrid()[i].length;j++) {
-		            System.out.print(grid.getGrid()[i][j] + " ");
-		         }
-		         System.out.println();
-		      }
-			if(shape.isStuckDown())
-			{
-				shape = new TPiece();
-			}
-		}
-		
+			tetris.getGui().addKeyListener(new KeyAdapter() {
+				  public void keyPressed(KeyEvent e) {
+				    int keyCode = e.getKeyCode();
+				    switch(keyCode)
+				    {
+				    case KeyEvent.VK_UP:
+				    	tetris.getGrid().resetPosition(tetris.getShape());
+				    	tetris.getShape().rotate();
+				    	tetris.getGrid().refreshPosition(tetris.getShape());
+				    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	break;
+				    case KeyEvent.VK_DOWN:
+				    	tetris.getGrid().resetPosition(tetris.getShape());
+						tetris.getShape().down();
+						tetris.getGrid().refreshPosition(tetris.getShape());
+						tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	break;
+				    case KeyEvent.VK_RIGHT:
+				    	tetris.getGrid().resetPosition(tetris.getShape());
+				    	tetris.getShape().moveRight();
+				    	tetris.getGrid().refreshPosition(tetris.getShape());
+				    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	break;
+				    case KeyEvent.VK_LEFT:
+				    	tetris.getGrid().resetPosition(tetris.getShape());
+				    	tetris.getShape().moveLeft();
+				    	tetris.getGrid().refreshPosition(tetris.getShape());
+				    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	break;
+				    }
+				  }
+				});
+
 	}
-	
 }

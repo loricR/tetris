@@ -34,14 +34,15 @@ public class Grid {
     	}
     }
     
-    public void refreshPosition(Shape shape) {
+    public void resetPosition(Shape shape) {
     	curPiece = shape;
     	for(int i=0; i<4; i++) {
     		grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 0; //On efface l'ancienne position de la piece
     	}
-    	curPiece.down();
-    	curPiece.moveLeft();
-    	//curPiece.rotate();
+    }
+    
+    public void refreshPosition(Shape shape) {
+    	curPiece = shape;
     	for(int i=0; i<4; i++) {
         	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1; //On remplace la piece aux nouvelles coordonnées
     	}
