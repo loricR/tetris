@@ -60,13 +60,13 @@ public abstract class Shape {
     }
     
     public void down() {
-    	if(!isStuckDown())
-    	{
+    	/*if(!isStuckDown())
+    	{*/
 	    	for(int i=0; i<4; i++) 
 	    	{
 	    		setCoord(i, coord[i][0], coord[i][1]+1);	
 	    	}
-    	}
+    	//}
     }
     
     public boolean isStuckLeft() {
@@ -94,6 +94,7 @@ public abstract class Shape {
     public boolean isStuckDown() {
     	for(int i=0; i<4; i++) 
     	{
+    		//System.out.println(""+i+" "+coord[i][1]);
 	    	if(coord[i][1] >= 19)
 			{
 				return true;

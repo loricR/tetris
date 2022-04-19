@@ -27,15 +27,23 @@ public class GameLoop {
     static class RepeatedTask extends TimerTask {
         public void run() {
             //System.out.println("Running!");
-            if(!shape.isStuckDown())
+        	//System.out.println(""+grid.gridFilledDown(shape));
+        	boolean res = grid.gridFilledDown(shape);
+        	boolean ult = shape.isStuckDown();
+            if(!ult && !res)
 			{
+            	System.out.println("shape stuck : "+ult);
+            	System.out.println("grid filled : "+res);
             	grid.resetPosition(shape);
 				shape.down();
+				
 				grid.refreshPosition(shape);
 				gui.refreshGridGui(grid);
 			}
             else
             {
+            	System.out.println("shape stuck : "+ult);
+            	System.out.println("grid filled : "+res);
 				shape = randomPiece();
             }
             
