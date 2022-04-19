@@ -27,22 +27,31 @@ public class TetrisGame extends JFrame{
 				    	tetris.getGui().refreshGridGui(tetris.getGrid());
 				    	break;
 				    case KeyEvent.VK_DOWN:
-				    	tetris.getGrid().resetPosition(tetris.getShape());
-						tetris.getShape().down();
-						tetris.getGrid().refreshPosition(tetris.getShape());
-						tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	if(!tetris.getShape().isStuckDown() && !tetris.getGrid().gridFilledDown(tetris.getShape()))
+				    	{
+				    		tetris.getGrid().resetPosition(tetris.getShape());
+							tetris.getShape().down();
+							tetris.getGrid().refreshPosition(tetris.getShape());
+							tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	}
 				    	break;
 				    case KeyEvent.VK_RIGHT:
-				    	tetris.getGrid().resetPosition(tetris.getShape());
-				    	tetris.getShape().moveRight();
-				    	tetris.getGrid().refreshPosition(tetris.getShape());
-				    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	if(!tetris.getShape().isStuckRight() && !tetris.getGrid().gridFilledRight(tetris.getShape()))
+				    	{
+				    		tetris.getGrid().resetPosition(tetris.getShape());
+					    	tetris.getShape().moveRight();
+					    	tetris.getGrid().refreshPosition(tetris.getShape());
+					    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	}
 				    	break;
 				    case KeyEvent.VK_LEFT:
-				    	tetris.getGrid().resetPosition(tetris.getShape());
-				    	tetris.getShape().moveLeft();
-				    	tetris.getGrid().refreshPosition(tetris.getShape());
-				    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	if(!tetris.getShape().isStuckLeft() && !tetris.getGrid().gridFilledLeft(tetris.getShape()))
+				    	{
+				    		tetris.getGrid().resetPosition(tetris.getShape());
+					    	tetris.getShape().moveLeft();
+					    	tetris.getGrid().refreshPosition(tetris.getShape());
+					    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	}
 				    	break;
 				    }
 				  }
