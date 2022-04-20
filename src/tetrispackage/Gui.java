@@ -14,12 +14,18 @@ import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 public class Gui extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
 	private JPanel[][] gridGui;
+	
+	private JButton playButton;
+	private JRadioButton beginnerLevel;
+	private JRadioButton easyLevel;
 
 	public Gui() {
 		this.setTitle("TETRIS");
@@ -33,6 +39,13 @@ public class Gui extends JFrame {
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
+		
+		playButton = new JButton("PLAY !");
+		//contentPane.add(playButton)
+		beginnerLevel = new JRadioButton("Beginner");
+		//contentPane.add(beginnerLevel);
+		easyLevel = new JRadioButton("Easy");
+		//contentPane.add(easyLevel);
 		
 		
 		gridGui = new JPanel[20][10];

@@ -46,7 +46,7 @@ public class Grid {
     	curPiece = shape;
     	for(int i=0; i<4; i++) 
     	{
-        	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1; //On remplace la piece aux nouvelles coordonnées
+        	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1; //On remplace la piece aux nouvelles coordonnees
     	}
     	
     }
