@@ -8,7 +8,7 @@ public class ZPiece extends Shape {
     	super();
     	fillPiece();
     	setSpawnCoord();
-    	this.color = Color.RED;
+    	this.color = 5;
     }
     
     public void fillPiece() {

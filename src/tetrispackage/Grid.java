@@ -30,7 +30,7 @@ public class Grid {
     	
     	for(int i=0; i<4; i++)
     	{
-    		grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1;
+    		grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = curPiece.getColor();
     	}
     }
     
@@ -46,7 +46,7 @@ public class Grid {
     	curPiece = shape;
     	for(int i=0; i<4; i++) 
     	{
-        	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 1; //On remplace la piece aux nouvelles coordonnees
+        	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = curPiece.getColor(); //On remplace la piece aux nouvelles coordonnées
     	}
     	
     }
@@ -59,7 +59,7 @@ public class Grid {
     	{
     		if((curPiece.getCoordY(i)+1) < 20)
     		{
-    			if(grid[curPiece.getCoordY(i)+1][curPiece.getCoordX(i)] == 1)
+    			if(grid[curPiece.getCoordY(i)+1][curPiece.getCoordX(i)] != 0)
     			{	
     				boolean otherPiece = true;
     				for(int j=0; j<4; j++)
@@ -92,7 +92,7 @@ public class Grid {
     	{
     		if((curPiece.getCoordX(i)+1) < 10)
     		{
-    			if(grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)+1] == 1)
+    			if(grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)+1] != 0)
     			{	
     				boolean otherPiece = true;
     				for(int j=0; j<4; j++)
@@ -125,7 +125,7 @@ public class Grid {
     	{
     		if((curPiece.getCoordX(i)-1) >= 0)
     		{
-    			if(grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)-1] == 1)
+    			if(grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)-1] != 0)
     			{	
     				boolean otherPiece = true;
     				for(int j=0; j<4; j++)
@@ -148,5 +148,42 @@ public class Grid {
     		}
     	}
 		return result;
+    }
+    
+    public boolean isLineFull(int index) {
+    	for(int j=0; j<10; j++)
+    	{
+    		if(grid[index][j] == 0)
+			{
+				return false;
+			}
+    	}
+    	return true;
+    }
+    
+    public void removeFullLine() {
+    	int indice = 19;
+    	
+    	for(int i=19; i>0; i--)
+    	{
+    		if(!isLineFull(i))
+    		{
+    			if(indice != i)
+    			{
+    				for(int k=0; k<10; k++)
+        			{
+        				grid[indice][k] = grid[i][k];
+        			}
+    			}
+    			indice--;
+    		}
+    		else
+    		{
+    			for(int k=0; k<10; k++)
+    			{
+    				
+    			}
+    		}
+    	}
     }
 }

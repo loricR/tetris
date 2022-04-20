@@ -8,7 +8,7 @@ public class JPiece extends Shape {
     	super();
     	fillPiece();
     	setSpawnCoord();
-    	this.color = Color.BLUE;
+    	this.color = 1;
     }
     
     public void fillPiece() {

@@ -20,33 +20,35 @@ public class GameLoop {
 		grid.spawnPiece(shape);
     	
         Timer timer = new Timer();
-        //System.out.println("Stop Watch Started.");
         timer.scheduleAtFixedRate(new RepeatedTask(), 1000, 1000);
     }
 
     static class RepeatedTask extends TimerTask {
         public void run() {
-            //System.out.println("Running!");
-        	//System.out.println(""+grid.gridFilledDown(shape));
-        	boolean res = grid.gridFilledDown(shape);
-        	boolean ult = shape.isStuckDown();
-            if(!ult && !res)
+            if(!shape.isStuckDown() && !grid.gridFilledDown(shape))
 			{
-            	System.out.println("shape stuck : "+ult);
-            	System.out.println("grid filled : "+res);
             	grid.resetPosition(shape);
 				shape.down();
 				
 				grid.refreshPosition(shape);
 				gui.refreshGridGui(grid);
+				//gui.refreshPiecePosition(grid);
+				for(int i=0; i<20; i++)
+				{
+					for(int j=0; j<10; j++)
+					{
+						System.out.print(" "+grid.getGrid()[i][j]);
+					}
+					System.out.println();
+				}
+				System.out.println("\r\n");
 			}
             else
             {
-            	System.out.println("shape stuck : "+ult);
-            	System.out.println("grid filled : "+res);
+            	grid.removeFullLine();
+            	gui.refreshGridGui(grid);
 				shape = randomPiece();
             }
-            
         }
     }
     

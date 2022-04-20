@@ -63,7 +63,7 @@ public class Gui extends JFrame {
 		panel.setLayout(new GridLayout(20, 10,1,1));
 	}
 	
-	public void refreshGridGui(Grid grid) {
+	public void refreshPiecePosition(Grid grid) {
 		for(int i=0; i<20; i++)
 		{
 			for(int j=0; j<10; j++)
@@ -77,8 +77,74 @@ public class Gui extends JFrame {
 		
 		for(int i=0; i<4; i++)
 		{
-			gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(grid.getCurPiece().getColor());
+			switch(grid.getCurPiece().getColor())
+			{
+			case 1:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.BLUE);
+				break;
+			case 2:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.ORANGE);
+				break;
+			case 3:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.YELLOW);
+				break;
+			case 4:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.GREEN);
+				break;
+			case 5:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.RED);
+				break;
+			case 6:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.PINK);
+				break;
+			case 7:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.CYAN);
+				break;
+			default:
+				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.WHITE);
+				break;
+			}
 		}
+	}
+	
+	public void refreshGridGui(Grid grid) {
+		for(int i=0; i<20; i++)
+		{
+			for(int j=0; j<10; j++)
+			{
+				switch(grid.getGrid()[i][j])
+				{
+				case 0:
+					gridGui[i][j].setBackground(Color.WHITE);
+					break;
+				case 1:
+					gridGui[i][j].setBackground(Color.BLUE);
+					break;
+				case 2:
+					gridGui[i][j].setBackground(Color.ORANGE);
+					break;
+				case 3:
+					gridGui[i][j].setBackground(Color.YELLOW);
+					break;
+				case 4:
+					gridGui[i][j].setBackground(Color.GREEN);
+					break;
+				case 5:
+					gridGui[i][j].setBackground(Color.RED);
+					break;
+				case 6:
+					gridGui[i][j].setBackground(Color.PINK);
+					break;
+				case 7:
+					gridGui[i][j].setBackground(Color.CYAN);
+					break;
+				default:
+					gridGui[i][j].setBackground(Color.WHITE);
+					break;
+				}	
+			}
+		}
+			
 	}
 
 }

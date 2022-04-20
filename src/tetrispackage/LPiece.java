@@ -8,7 +8,7 @@ public class LPiece extends Shape {
     	super();
     	fillPiece();
     	setSpawnCoord();
-    	this.color = Color.ORANGE;
+    	this.color = 2;
     }
     
     public void fillPiece() {
