@@ -8,7 +8,8 @@ public abstract class Shape {
 	protected int[][][] piece;
 	protected int[][] coord;
 	protected int rotation;
-	protected Color color;
+	//protected Color color;
+	protected int color;
 	
 	public abstract void fillPiece();
 	public abstract void setSpawnCoord();
@@ -19,7 +20,7 @@ public abstract class Shape {
 		this.piece = new int[4][4][2];
 	}
 	
-	public Color getColor() {
+	public int getColor() {
 		return this.color;
 	}
 	
