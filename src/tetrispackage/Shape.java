@@ -8,7 +8,6 @@ public abstract class Shape {
 	protected int[][][] piece;
 	protected int[][] coord;
 	protected int rotation;
-	//protected Color color;
 	protected int color;
 	
 	public abstract void fillPiece();
@@ -22,6 +21,10 @@ public abstract class Shape {
 	
 	public int getColor() {
 		return this.color;
+	}
+	
+	public int getRotation() {
+		return this.rotation;
 	}
 	
 	public int[][][] getPiece() {
@@ -95,7 +98,6 @@ public abstract class Shape {
     public boolean isStuckDown() {
     	for(int i=0; i<4; i++) 
     	{
-    		//System.out.println(""+i+" "+coord[i][1]);
 	    	if(coord[i][1] >= 19)
 			{
 				return true;
@@ -123,5 +125,31 @@ public abstract class Shape {
 		}
     }
     
-
+   /* public boolean canRotate() {
+    	int x0 = this.getCoordX(0);
+    	int y0 = this.getCoordY(0);
+    	boolean result =true;
+    	int newRotation = 0;
+    	
+    	if(this.rotation == 0 || this.rotation == 1 || this.rotation == 2)
+    	{
+    		newRotation = this.rotation +1;
+    	}
+    	else if(this.rotation == 3)
+    	{
+    		newRotation = 0;
+    	}
+    	
+    	for(int k=0; k<4; k++)
+		{
+    		System.out.println(""+(x0 + piece[newRotation][k][0]));
+    		if(((x0 + piece[newRotation][k][0]) >= 10) || ((x0 + piece[newRotation][k][0]) < 0) || 
+    			((y0 + piece[newRotation][k][1]) >= 20) || ((y0 + piece[newRotation][k][1]) < 0))
+    		{
+    			result = false;
+    		}
+		}
+    	return result;
+    	
+    }*/
 }
