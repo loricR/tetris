@@ -106,7 +106,7 @@ public abstract class Shape {
     	return false;
     }
     
-    public void rotate() {
+    public void rotateClock() {
     	int x0 = this.getCoordX(0);
     	int y0 = this.getCoordY(0);
     	
@@ -125,31 +125,22 @@ public abstract class Shape {
 		}
     }
     
-   /* public boolean canRotate() {
+    public void rotateAntiClock() {
     	int x0 = this.getCoordX(0);
     	int y0 = this.getCoordY(0);
-    	boolean result =true;
-    	int newRotation = 0;
     	
-    	if(this.rotation == 0 || this.rotation == 1 || this.rotation == 2)
+    	if(this.rotation == 1 || this.rotation == 2 || this.rotation == 3)
     	{
-    		newRotation = this.rotation +1;
+    		this.rotation -=1;
     	}
-    	else if(this.rotation == 3)
+    	else if(this.rotation == 0)
     	{
-    		newRotation = 0;
+    		this.rotation = 3;
     	}
     	
-    	for(int k=0; k<4; k++)
+    	for(int i=0; i<4; i++)
 		{
-    		System.out.println(""+(x0 + piece[newRotation][k][0]));
-    		if(((x0 + piece[newRotation][k][0]) >= 10) || ((x0 + piece[newRotation][k][0]) < 0) || 
-    			((y0 + piece[newRotation][k][1]) >= 20) || ((y0 + piece[newRotation][k][1]) < 0))
-    		{
-    			result = false;
-    		}
+    		this.setCoord(i, x0 + piece[rotation][i][0], y0 + piece[rotation][i][1]);
 		}
-    	return result;
-    	
-    }*/
+    }
 }
