@@ -21,10 +21,13 @@ public class TetrisGame extends JFrame{
 				    switch(keyCode)
 				    {
 				    case KeyEvent.VK_UP:
-				    	tetris.getGrid().resetPosition(tetris.getShape());
-				    	tetris.getShape().rotate();
-				    	tetris.getGrid().refreshPosition(tetris.getShape());
-				    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	if(tetris.getGrid().canRotate(tetris.getShape()))
+				    	{
+				    		tetris.getGrid().resetPosition(tetris.getShape());
+					    	tetris.getShape().rotate();
+					    	tetris.getGrid().refreshPosition(tetris.getShape());
+					    	tetris.getGui().refreshGridGui(tetris.getGrid());
+				    	}
 				    	break;
 				    case KeyEvent.VK_DOWN:
 				    	if(!tetris.getShape().isStuckDown() && !tetris.getGrid().gridFilledDown(tetris.getShape()))
