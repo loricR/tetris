@@ -36,6 +36,19 @@ public class Grid {
     	}
     }
     
+    public boolean canSpawn(Shape shape) {
+    	curPiece = shape;
+    	
+    	for(int i=0; i<4; i++)
+    	{
+	    	if(grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] != 0)
+	    	{
+	    		return false;
+	    	}
+    	}
+    	return true;
+    }
+    
     public void resetPosition(Shape shape) {
     	curPiece = shape;
     	for(int i=0; i<4; i++) 
