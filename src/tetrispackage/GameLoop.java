@@ -66,6 +66,7 @@ public class GameLoop implements Levels {
 	            {
 	            	grid.removeFullLine();
 	            	gui.refreshGridGui(grid);
+	            	System.out.println("score : "+grid.getScore());
 					shape = nextPiece.get(0);
 					nextPiece.remove(0);
 					nextPiece.add(randomPiece());

@@ -6,10 +6,14 @@ public class Grid {
     private int[][] grid;
     private Shape curPiece;
     private int removedLines;
+    private int lastLines;
+    private int score;
 
     public Grid() {
     	this.grid = new int[20][10];
     	this.removedLines = 0;
+    	this.lastLines = 0;
+    	this.score = 0;
     }
 
     public Grid(int x, int y) {
@@ -23,8 +27,12 @@ public class Grid {
     	return this.curPiece;
     }
     
-    public boolean isFilled() {
-		return false;
+    public int getRemovedLines() {
+    	return this.removedLines;
+    }
+    
+    public int getScore() {
+    	return this.score;
     }
     
     public void spawnPiece(Shape shape) {
@@ -192,15 +200,45 @@ public class Grid {
     			}
     			indice--;
     		}
+    	}
+    	for(int i=indice; i>=0; i--)
+    	{
+    		for(int k=0; k<10; k++)
+			{
+				grid[i][k] = 0;
+			}
+    	}
+    	
+    	switch(indice)
+    	{
+    	case 0:
+    		this.score += 100;
+    		break;
+    	case 1:
+    		this.score += 200;
+    		break;
+    	case 2:
+    		this.score += 300;
+    		break;
+    	case 3:
+    		if(this.lastLines == 3)
+    		{
+    			this.score += 1200;
+    		}
     		else
     		{
-    			for(int k=0; k<10; k++)
-    			{
-    				
-    			}
+    			this.score += 800;
     		}
+    		break;
+    	default:
+    		break;
     	}
+    	
     	this.removedLines += indice;
+    	if(indice >= 0)
+    	{
+    		this.lastLines = indice;
+    	}
     }
     
     public boolean canRotate(Shape shape) {
