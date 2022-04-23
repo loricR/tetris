@@ -16,12 +16,17 @@ public class GameLoop implements Levels {
 	private static ArrayList<Shape> nextPiece;
 	private static int count;
 	private static int level;
+	private static float seconds;
+	private static int minutes;
+	private static int time;
 	
     public GameLoop() {
     	gameOver = false;
     	grid = new Grid();
 		gui = new Gui();
 		nextPiece = new ArrayList<Shape>();
+		seconds = 0;
+		minutes = 0;
 		
 		gui.setVisible(true);
 		
@@ -43,6 +48,11 @@ public class GameLoop implements Levels {
     static class RepeatedTask extends TimerTask {
         public void run() {
         	count ++;
+        	time+=1;
+        	minutes = time/600;
+        	seconds = (float)(time%600)/10;
+        	//System.out.println("temps : "+minutes+" : "+seconds);
+        	
         	if(count >= level)
         	{
         		count = 0;
