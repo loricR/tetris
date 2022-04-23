@@ -27,7 +27,7 @@ public class Gui extends JFrame {
 	private JPanel panel;
 	private JPanel[][] gridGui;
 	
-	private JButton playButton;
+	public JButton playButton;
 	private JRadioButton beginnerLevel;
 	private JRadioButton easyLevel;
 
@@ -46,8 +46,7 @@ public class Gui extends JFrame {
 		
 		playButton = new JButton("PLAY !");
 		contentPane.add(playButton);
-		playButton.setSelected(false);
-		playButton.resetKeyboardActions();
+		
 		
 		
 		beginnerLevel = new JRadioButton("Beginner");

@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JComponent.*;
+import java.awt.event.*;
 
 
 public class GameLoop implements Levels {
@@ -32,7 +33,19 @@ public class GameLoop implements Levels {
 		gui.setVisible(true);
 		gui.requestFocus();
 		
-		nextPiece.add(randomPiece());
+		gui.playButton.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  gui.playButton.setEnabled(false);
+			  Play();
+		  }
+		});
+		
+    }
+    
+    public void Play() {
+    	nextPiece.add(randomPiece());
 		nextPiece.add(randomPiece());
 		nextPiece.add(randomPiece());
 		shape = randomPiece();
@@ -46,6 +59,14 @@ public class GameLoop implements Levels {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new RepeatedTask(), 500, 100);
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     static class RepeatedTask extends TimerTask {
         public void run() {
