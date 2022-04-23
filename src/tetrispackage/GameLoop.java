@@ -1,11 +1,12 @@
 package tetrispackage;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JComponent.*;
+
 
 public class GameLoop implements Levels {
 	private static Grid grid;
@@ -29,6 +30,7 @@ public class GameLoop implements Levels {
 		minutes = 0;
 		
 		gui.setVisible(true);
+		gui.requestFocus();
 		
 		nextPiece.add(randomPiece());
 		nextPiece.add(randomPiece());
@@ -63,6 +65,7 @@ public class GameLoop implements Levels {
 					
 					grid.refreshPosition(shape);
 					gui.refreshGridGui(grid);
+					gui.requestFocus();
 					for(int i=0; i<20; i++)
 					{
 						for(int j=0; j<10; j++)

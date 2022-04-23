@@ -16,6 +16,10 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JComponent.*;
 
 public class Gui extends JFrame {
 
@@ -31,7 +35,7 @@ public class Gui extends JFrame {
 		this.setTitle("TETRIS");
 		this.setSize(600,800);
 		this.setLocationRelativeTo(null); //Center the frame
-		this.setLayout(null);
+		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
@@ -41,7 +45,11 @@ public class Gui extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		playButton = new JButton("PLAY !");
-		//contentPane.add(playButton)
+		contentPane.add(playButton);
+		playButton.setSelected(false);
+		playButton.resetKeyboardActions();
+		
+		
 		beginnerLevel = new JRadioButton("Beginner");
 		//contentPane.add(beginnerLevel);
 		easyLevel = new JRadioButton("Easy");
