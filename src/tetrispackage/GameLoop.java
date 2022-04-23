@@ -22,6 +22,7 @@ public class GameLoop implements Levels {
     	grid = new Grid();
 		gui = new Gui();
 		nextPiece = new ArrayList<Shape>();
+		
 		gui.setVisible(true);
 		
 		nextPiece.add(randomPiece());
@@ -79,6 +80,16 @@ public class GameLoop implements Levels {
 					{
 						this.cancel();
 						gameOver = true;
+						int highScored = grid.saveHighScore();
+						if(highScored == 0)
+						{
+							System.out.println("You have tied the high score !");
+						}
+						else if(highScored == 1)
+						{
+							System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
+						}
+						
 						System.out.println("Game Over ! ");
 					}
 	            }

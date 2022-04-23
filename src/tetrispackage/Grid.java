@@ -1,6 +1,12 @@
 package tetrispackage;
 import java.util.*;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Grid {
     private int[][] grid;
@@ -8,12 +14,15 @@ public class Grid {
     private int removedLines;
     private int lastLines;
     private int score;
+    private File file;
+    private int highScore;
 
     public Grid() {
     	this.grid = new int[20][10];
     	this.removedLines = 0;
     	this.lastLines = 0;
     	this.score = 0;
+    	this.highScore = getSavedHighScore();
     }
 
     public Grid(int x, int y) {
@@ -33,6 +42,66 @@ public class Grid {
     
     public int getScore() {
     	return this.score;
+    }
+    
+    public int saveHighScore() {
+    	if(score > highScore)
+    	{
+    		file = new File("highScore.txt");
+        	
+        	try {
+        		BufferedWriter output = new BufferedWriter(new FileWriter(file, false));
+        		output.append(""+score);
+        		output.close();
+        		} catch (IOException ex1) {
+        	        System.err.println("ERROR writing score to file: "+ex1);
+        	    }
+        	return 1;
+    	}
+    	else if(score == highScore)
+    	{
+    		return 0;
+    	}
+    	else
+    	{
+    		return -1;
+    	}
+    }
+    
+    public int getHighScore() {
+    	return this.highScore;
+    }
+    
+    public int getSavedHighScore() {
+    	int fileScore = 0;
+    	String fileName = "highScore.txt";
+		if(!new File(fileName).exists())
+		{
+			try {
+				new File(fileName).createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+    	file = new File(fileName);
+    	
+    	try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line = reader.readLine();
+            if(line != null)
+            {
+            	try {
+                    fileScore = Integer.parseInt(line.trim());   // parse as an int
+                } catch (NumberFormatException e1) {
+                    // ignore if score is invalid
+                }
+            }
+            reader.close();
+        } catch (IOException ex) {
+            System.err.println("ERROR reading scores from file");
+        }
+    	
+    	return fileScore;
     }
     
     public void spawnPiece(Shape shape) {
