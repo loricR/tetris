@@ -104,6 +104,20 @@ public class Grid {
     	return fileScore;
     }
     
+    public void resetGrid() {
+    	for(int i=0; i<20; i++)
+    	{
+    		for(int j=0; j<10; j++)
+        	{
+        		this.grid[i][j] = 0;
+        	}
+    	}
+    	this.removedLines = 0;
+    	this.lastLines = 0;
+    	this.score = 0;
+    	this.highScore = getSavedHighScore();
+    }
+    
     public void spawnPiece(Shape shape) {
     	curPiece = shape;
     	
