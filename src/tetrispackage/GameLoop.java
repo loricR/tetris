@@ -30,19 +30,84 @@ public class GameLoop implements Levels {
 		seconds = 0;
 		minutes = 0;
 		
+		this.level = BEGINNER;
 		gui.setVisible(true);
 		gui.requestFocus();
 		
+		
+		//Play button listener 
 		gui.playButton.addActionListener(new ActionListener()
 		{
 		  public void actionPerformed(ActionEvent e)
 		  {
 			  gui.playButton.setEnabled(false);
+			  gui.beginnerLevel.setEnabled(false);
+			  gui.easyLevel.setEnabled(false);
+			  gui.normalLevel.setEnabled(false);
+			  gui.hardLevel.setEnabled(false);
+			  gui.legendLevel.setEnabled(false);
 			  Play();
 		  }
 		});
 		
-    }
+		//Level selection listeners
+		gui.beginnerLevel.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  level = BEGINNER;
+			  gui.easyLevel.setSelected(false);
+			  gui.normalLevel.setSelected(false);
+			  gui.hardLevel.setSelected(false);
+			  gui.legendLevel.setSelected(false);
+		  }
+		});
+		gui.easyLevel.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  level = EASY;
+			  gui.beginnerLevel.setSelected(false);
+			  gui.normalLevel.setSelected(false);
+			  gui.hardLevel.setSelected(false);
+			  gui.legendLevel.setSelected(false);
+		  }
+		});
+		gui.normalLevel.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  level = NORMAL;
+			  gui.easyLevel.setSelected(false);
+			  gui.beginnerLevel.setSelected(false);
+			  gui.hardLevel.setSelected(false);
+			  gui.legendLevel.setSelected(false);
+		  }
+		});
+		gui.hardLevel.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  level = HARD;
+			  gui.easyLevel.setSelected(false);
+			  gui.normalLevel.setSelected(false);
+			  gui.beginnerLevel.setSelected(false);
+			  gui.legendLevel.setSelected(false);
+		  }
+		});
+		gui.legendLevel.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			  level = LEGEND;
+			  gui.easyLevel.setSelected(false);
+			  gui.normalLevel.setSelected(false);
+			  gui.hardLevel.setSelected(false);
+			  gui.beginnerLevel.setSelected(false);
+		  }
+		});
+		
+    } // ------------- end of the constructor ------------------------------
     
     public void Play() {
     	ResetGame();
@@ -57,7 +122,6 @@ public class GameLoop implements Levels {
 		
 		hardDropped = false;
 		count = 0;
-		level = BEGINNER;
     	
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new RepeatedTask(), 500, 100);
@@ -135,6 +199,11 @@ public class GameLoop implements Levels {
 						
 						gui.playButton.setText("Replay");
 						gui.playButton.setEnabled(true);
+						gui.beginnerLevel.setEnabled(true);
+						gui.easyLevel.setEnabled(true);
+						gui.normalLevel.setEnabled(true);
+						gui.hardLevel.setEnabled(true);
+						gui.legendLevel.setEnabled(true);
 					}
 	            }
         	}

@@ -28,8 +28,11 @@ public class Gui extends JFrame {
 	private JPanel[][] gridGui;
 	
 	public JButton playButton;
-	private JRadioButton beginnerLevel;
-	private JRadioButton easyLevel;
+	public JRadioButton beginnerLevel;
+	public JRadioButton easyLevel;
+	public JRadioButton normalLevel;
+	public JRadioButton hardLevel;
+	public JRadioButton legendLevel;
 
 	public Gui() {
 		this.setTitle("TETRIS");
@@ -44,15 +47,23 @@ public class Gui extends JFrame {
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
+		//Play Button
 		playButton = new JButton("PLAY !");
 		contentPane.add(playButton);
 		
 		
-		
+		//Level selection
 		beginnerLevel = new JRadioButton("Beginner");
-		//contentPane.add(beginnerLevel);
+		contentPane.add(beginnerLevel);
+		beginnerLevel.setSelected(true);
 		easyLevel = new JRadioButton("Easy");
-		//contentPane.add(easyLevel);
+		contentPane.add(easyLevel);
+		normalLevel = new JRadioButton("Normal");
+		contentPane.add(normalLevel);
+		hardLevel = new JRadioButton("Hard");
+		contentPane.add(hardLevel);
+		legendLevel = new JRadioButton("Legend");
+		contentPane.add(legendLevel);
 		
 		
 		gridGui = new JPanel[20][10];
