@@ -45,8 +45,7 @@ public class GameLoop implements Levels {
     }
     
     public void Play() {
-    	grid.resetGrid();
-    	gui.refreshGridGui(grid);
+    	ResetGame();
     	gui.requestFocus();
     	
     	nextPiece.add(randomPiece());
@@ -62,6 +61,16 @@ public class GameLoop implements Levels {
     	
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new RepeatedTask(), 500, 100);
+    }
+    
+    
+    public void ResetGame() {
+    	grid.resetGrid();
+    	gui.refreshGridGui(grid);
+    	gameOver = false;
+    	nextPiece.clear();
+    	seconds = 0;
+    	minutes = 0;
     }
     
     
