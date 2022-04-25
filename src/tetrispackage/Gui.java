@@ -1,6 +1,7 @@
 package tetrispackage;
 
 import java.awt.BorderLayout;
+import javax.swing.JLabel;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -33,7 +34,13 @@ public class Gui extends JFrame {
 	public JRadioButton normalLevel;
 	public JRadioButton hardLevel;
 	public JRadioButton legendLevel;
+	
+	private JLabel score;
+	private JLabel highScore;
+	private JLabel chrono;
 
+	
+	// ---------------------------------------------------------------------------------------------
 	public Gui() {
 		this.setTitle("TETRIS");
 		this.setSize(600,800);
@@ -42,6 +49,7 @@ public class Gui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -49,21 +57,38 @@ public class Gui extends JFrame {
 		
 		//Play Button
 		playButton = new JButton("PLAY !");
+		playButton.setBounds(450, 150, 80, 20);
 		contentPane.add(playButton);
 		
 		
 		//Level selection
 		beginnerLevel = new JRadioButton("Beginner");
+		beginnerLevel.setBounds(450, 180, 80, 20);
 		contentPane.add(beginnerLevel);
 		beginnerLevel.setSelected(true);
 		easyLevel = new JRadioButton("Easy");
+		easyLevel.setBounds(450, 200, 80, 20);
 		contentPane.add(easyLevel);
 		normalLevel = new JRadioButton("Normal");
+		normalLevel.setBounds(450, 220, 80, 20);
 		contentPane.add(normalLevel);
 		hardLevel = new JRadioButton("Hard");
+		hardLevel.setBounds(450, 240, 80, 20);
 		contentPane.add(hardLevel);
 		legendLevel = new JRadioButton("Legend");
+		legendLevel.setBounds(450, 260, 80, 20);
 		contentPane.add(legendLevel);
+		
+		// Displaying
+		score = new JLabel("0");
+		score.setBounds(425, 100, 30, 30);
+		contentPane.add(score);
+		highScore = new JLabel("0");
+		highScore.setBounds(475, 100, 30, 30);
+		contentPane.add(highScore);
+		chrono = new JLabel("0:0");
+		chrono.setBounds(525, 100, 50, 30);
+		contentPane.add(chrono);
 		
 		
 		gridGui = new JPanel[20][10];
@@ -79,7 +104,9 @@ public class Gui extends JFrame {
 			}	
 		}
 		panel.setLayout(new GridLayout(20, 10,1,1));
-	}
+		panel.setBounds(50, 50, 325, 650);
+	} // ---------------------------------------------------------------------------------------------
+	
 	
 	public void refreshPiecePosition(Grid grid) {
 		for(int i=0; i<20; i++)
@@ -123,7 +150,8 @@ public class Gui extends JFrame {
 				break;
 			}
 		}
-	}
+	}  // ---------------------------------------------------------------------------------------------
+	
 	
 	public void refreshGridGui(Grid grid) {
 		for(int i=0; i<20; i++)
@@ -163,6 +191,17 @@ public class Gui extends JFrame {
 			}
 		}
 			
-	}
+	} // ---------------------------------------------------------------------------------------------
+	
+	
+	public void refreshScore(int refScore, int refHighScore) {
+		this.score.setText(String.valueOf(refScore));
+		this.highScore.setText(String.valueOf(refHighScore));
+	}// ---------------------------------------------------------------------------------------------
+	
+	public void refreshTime(int minutes, float seconds) {
+		this.chrono.setText(String.valueOf(minutes) + ":" + String.valueOf(seconds));
+	}// ---------------------------------------------------------------------------------------------
+	
 
 }

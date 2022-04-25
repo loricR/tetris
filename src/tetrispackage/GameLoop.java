@@ -27,6 +27,7 @@ public class GameLoop implements Levels {
     	grid = new Grid();
 		gui = new Gui();
 		nextPiece = new ArrayList<Shape>();
+		time = 0;
 		seconds = 0;
 		minutes = 0;
 		
@@ -34,6 +35,7 @@ public class GameLoop implements Levels {
 		gui.setVisible(true);
 		gui.requestFocus();
 		
+		gui.refreshScore(grid.getScore(), grid.getHighScore());
 		
 		//Play button listener 
 		gui.playButton.addActionListener(new ActionListener()
@@ -133,8 +135,10 @@ public class GameLoop implements Levels {
     	gui.refreshGridGui(grid);
     	gameOver = false;
     	nextPiece.clear();
-    	seconds = 0;
-    	minutes = 0;
+    	this.time = 0;
+    	this.seconds = 0;
+    	this.minutes = 0;
+    	gui.refreshTime(this.minutes, this.seconds);
     }
     
     
@@ -146,6 +150,8 @@ public class GameLoop implements Levels {
         	minutes = time/600;
         	seconds = (float)(time%600)/10;
         	//System.out.println("temps : "+minutes+" : "+seconds);
+        	gui.refreshTime(minutes, seconds);
+        	gui.refreshScore(grid.getScore(), grid.getHighScore());
         	
         	if(count >= level)
         	{
