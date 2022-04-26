@@ -22,6 +22,7 @@ public class GameLoop implements Levels {
 	private static int minutes;
 	private static int time;
 	private static boolean pause;
+	private static int lineLevelUp;
 	
     public GameLoop() {
     	gameOver = false;
@@ -33,6 +34,7 @@ public class GameLoop implements Levels {
 		minutes = 0;
 		
 		this.level = BEGINNER;
+		this.lineLevelUp = 10;
 		gui.setVisible(true);
 		gui.requestFocus();
 		
@@ -132,6 +134,7 @@ public class GameLoop implements Levels {
     public void Play() {
     	gui.displayGame();
     	ResetGame();
+    	gui.refreshLevel(11-level);
     	gui.pauseButton.setEnabled(true);
     	gui.requestFocus();
     	
@@ -207,6 +210,14 @@ public class GameLoop implements Levels {
 						nextPiece.remove(0);
 						nextPiece.add(randomPiece());
 		            	gui.refreshNextPiece(nextPiece);
+		            	
+		            	if(grid.getLastRemovedLines() >= 0 && grid.getRemovedLines() >= lineLevelUp && level > 1)
+			            {
+			            		level--;
+			            		lineLevelUp += 10;
+			            		gui.refreshLevel(11-level);
+			            }
+
 						if(grid.canSpawn(shape))
 						{
 							grid.spawnPiece(shape);
@@ -219,14 +230,18 @@ public class GameLoop implements Levels {
 							int highScored = grid.saveHighScore();
 							if(highScored == 0)
 							{
+								gui.displayGameOver("You have tied the high score !");
 								System.out.println("You have tied the high score !");
 							}
 							else if(highScored == 1)
 							{
+								gui.displayGameOver("You have the new high score ! \r\nThe previous high score was : "+grid.getHighScore()+"\r\nYour score is : "+grid.getScore());
 								System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
 							}
-							
-							System.out.println("Game Over ! ");
+							else
+							{
+								gui.displayGameOver("");
+							}
 							
 							//gui.playButton.setText("Replay");
 							gui.playButton.setEnabled(true);
@@ -269,7 +284,7 @@ public class GameLoop implements Levels {
     }
     
     public static Shape randomPiece() {
-    	int r = new Random().nextInt(7);
+    	/*int r = new Random().nextInt(7);
     	switch(r)
     	{
     	case 0:
@@ -288,6 +303,7 @@ public class GameLoop implements Levels {
     		return new TPiece();
     	default:
     		return null;
-    	}
+    	}*/
+    	return new IPiece();
     }
 }
