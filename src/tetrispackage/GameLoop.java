@@ -141,6 +141,7 @@ public class GameLoop implements Levels {
 		shape = randomPiece();
 		
 		grid.spawnPiece(shape);
+		gui.refreshNextPiece(nextPiece);
 		
 		hardDropped = false;
 		count = 0;
@@ -167,65 +168,76 @@ public class GameLoop implements Levels {
         public void run() {
         	if (!pause)
         	{
-        		count = 0;
-	            if(!shape.isStuckDown() && !grid.gridFilledDown(shape))
-				{
-	            	grid.resetPosition(shape);
-					shape.down();
-					
-					grid.refreshPosition(shape);
-					gui.refreshGridGui(grid);
-					gui.requestFocus();
-					for(int i=0; i<20; i++)
+        		count ++;
+            	time+=1;
+            	minutes = time/600;
+            	seconds = (float)(time%600)/10;
+            	//System.out.println("temps : "+minutes+" : "+seconds);
+            	gui.refreshTime(minutes, seconds);
+            	gui.refreshScore(grid.getScore(), grid.getHighScore());
+            	
+            	if(count >= level)
+            	{
+	        		count = 0;
+		            if(!shape.isStuckDown() && !grid.gridFilledDown(shape))
 					{
-						for(int j=0; j<10; j++)
-						{
-							System.out.print(" "+grid.getGrid()[i][j]);
-						}
-						System.out.println();
-					}
-					System.out.println("\r\n");
-				}
-	            else
-	            {
-	            	grid.removeFullLine();
-	            	System.out.println(""+grid.getRemovedLines());
-	            	gui.refreshLine(grid.getRemovedLines());
-	            	gui.refreshGridGui(grid);
-	            	System.out.println("score : "+grid.getScore());
-					shape = nextPiece.get(0);
-					nextPiece.remove(0);
-					nextPiece.add(randomPiece());
-					if(grid.canSpawn(shape))
-					{
-						grid.spawnPiece(shape);
-						hardDropped = false;
-					}
-					else
-					{
-						this.cancel();
-						gameOver = true;
-						int highScored = grid.saveHighScore();
-						if(highScored == 0)
-						{
-							System.out.println("You have tied the high score !");
-						}
-						else if(highScored == 1)
-						{
-							System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
-						}
+		            	grid.resetPosition(shape);
+						shape.down();
 						
-						System.out.println("Game Over ! ");
-						
-						//gui.playButton.setText("Replay");
-						gui.playButton.setEnabled(true);
-						/*gui.beginnerLevel.setEnabled(true);
-						gui.easyLevel.setEnabled(true);
-						gui.normalLevel.setEnabled(true);
-						gui.hardLevel.setEnabled(true);
-						gui.legendLevel.setEnabled(true);*/
+						grid.refreshPosition(shape);
+						gui.refreshGridGui(grid);
+						gui.requestFocus();
+						for(int i=0; i<20; i++)
+						{
+							for(int j=0; j<10; j++)
+							{
+								System.out.print(" "+grid.getGrid()[i][j]);
+							}
+							System.out.println();
+						}
+						System.out.println("\r\n");
 					}
-	            }
+		            else
+		            {
+		            	grid.removeFullLine();
+		            	gui.refreshLine(grid.getRemovedLines());
+		            	gui.refreshGridGui(grid);
+		            	System.out.println("score : "+grid.getScore());
+						shape = nextPiece.get(0);
+						nextPiece.remove(0);
+						nextPiece.add(randomPiece());
+		            	gui.refreshNextPiece(nextPiece);
+						if(grid.canSpawn(shape))
+						{
+							grid.spawnPiece(shape);
+							hardDropped = false;
+						}
+						else
+						{
+							this.cancel();
+							gameOver = true;
+							int highScored = grid.saveHighScore();
+							if(highScored == 0)
+							{
+								System.out.println("You have tied the high score !");
+							}
+							else if(highScored == 1)
+							{
+								System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
+							}
+							
+							System.out.println("Game Over ! ");
+							
+							//gui.playButton.setText("Replay");
+							gui.playButton.setEnabled(true);
+							/*gui.beginnerLevel.setEnabled(true);
+							gui.easyLevel.setEnabled(true);
+							gui.normalLevel.setEnabled(true);
+							gui.hardLevel.setEnabled(true);
+							gui.legendLevel.setEnabled(true);*/
+						}
+		            }
+            	}
         	}
         	       	
         }

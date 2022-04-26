@@ -17,6 +17,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -33,11 +34,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.Component;
 
 public class Gui extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel infoPanel, gamePanel;
+	private JPanel panel, infoPanel, gamePanel;
 	private JPanel[][] gridGui;
 	
 	private JPanel nextPiecesPanel;
@@ -72,6 +74,9 @@ public class Gui extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		panel = new JPanel();
+		panel.setBounds(426, 50, 125, 459);
+		//panel.setSize(600,800);
 		gamePanel = new JPanel();
 		gamePanel.setBackground(Color.WHITE);
 		
@@ -80,26 +85,39 @@ public class Gui extends JFrame {
 		flowLayout.setAlignment(FlowLayout.CENTER);
 		menuPanel.setBounds(50, 60, 500, 650);
 		contentPane.add(menuPanel);
+		//contentPane.add(panel);
+		//contentPane.add(gamePanel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		infoPanel = new JPanel();
 		infoPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		infoPanel.setBounds(400, 129, 100, 200);
-		contentPane.add(infoPanel);
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 		
 		nextPiecesPanel = new JPanel();
-		nextPiecesPanel.setBackground(Color.WHITE);
-		contentPane.add(nextPiecesPanel);
+		nextPiecesPanel.setBorder(new EmptyBorder(0, 0, 50, 0));
+		nextPiecesPanel.setBounds(425, 400, 100, 300);
+		nextPiecesGui = new JPanel[12][4];
+		for(int i=0; i<12; i++)
+		{
+			for(int j=0; j<4; j++)
+			{
+				nextPiecesGui[i][j] = new JPanel();
+				nextPiecesPanel.add(nextPiecesGui[i][j]);
+				nextPiecesGui[i][j].setBackground(Color.GRAY);
+				nextPiecesGui[i][j].setPreferredSize(new Dimension(25,25));
+			}	
+		}
+		nextPiecesPanel.setLayout(new GridLayout(12, 4,1,1));
+		panel.add(nextPiecesPanel);
+		panel.add(infoPanel);
+		
+		//contentPane.add(nextPiecesPanel);
 		
 		//Play & Pause Buttons
 		playButton = new JButton("PLAY !");
 		playButton.setBounds(450, 150, 80, 20);
-		contentPane.add(playButton);
-		pauseButton = new JButton("Pause");
-		pauseButton.setBounds(450, 300, 80, 20);
-		pauseButton.setEnabled(false);
-		contentPane.add(pauseButton);
-		
+		menuPanel.add(playButton);
 		
 		//Level selection
 		beginnerLevel = new JRadioButton("Beginner");
@@ -141,6 +159,10 @@ public class Gui extends JFrame {
 		tHighScore.setLabelFor(highScore);
 		infoPanel.add(tHighScore);
 		infoPanel.add(highScore);
+		pauseButton = new JButton("Pause");
+		pauseButton.setBounds(450, 300, 80, 20);
+		pauseButton.setEnabled(false);
+		infoPanel.add(pauseButton);
 		
 		
 		
@@ -184,23 +206,8 @@ public class Gui extends JFrame {
 				gridGui[i][j].setPreferredSize(new Dimension(25,25));
 			}	
 		}
-		panel.setLayout(new GridLayout(20, 10,1,1));
-		panel.setBounds(50, 50, 325, 650);
-		
-		
-		nextPiecesGui = new JPanel[12][4];
-		for(int i=0; i<12; i++)
-		{
-			for(int j=0; j<4; j++)
-			{
-				nextPiecesGui[i][j] = new JPanel();
-				nextPiecesPanel.add(nextPiecesGui[i][j]);
-				nextPiecesGui[i][j].setBackground(Color.GRAY);
-				nextPiecesGui[i][j].setPreferredSize(new Dimension(25,25));
-			}	
-		}
-		nextPiecesPanel.setLayout(new GridLayout(12, 4,1,1));
-		nextPiecesPanel.setBounds(425, 400, 100, 300);
+		gamePanel.setLayout(new GridLayout(20, 10,1,1));
+		gamePanel.setBounds(50, 50, 325, 650);
 		
 		
 	} // ---------------------------------------------------------------------------------------------
@@ -210,7 +217,7 @@ public class Gui extends JFrame {
 		for(int i=0; i<20; i++)
 		{
 			for(int j=0; j<10; j++)
-			{
+			{		nextPiecesPanel.setBounds(425, 400, 100, 300);
 				if(grid.getGrid()[i][j] == 0)
 				{
 					gridGui[i][j].setBackground(Color.WHITE);
@@ -325,21 +332,72 @@ public class Gui extends JFrame {
 	
 	
 	public void refreshScore(int refScore, int refHighScore) {
-		this.score.setText("Score : " + String.valueOf(refScore));
-		this.highScore.setText("High score : " + String.valueOf(refHighScore));
+		this.score.setText(String.valueOf(refScore));
+		this.highScore.setText(String.valueOf(refHighScore));
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshTime(int minutes, float seconds) {
-		this.chrono.setText("Chrono : " + String.valueOf(minutes) + ":" + String.valueOf(seconds));
+		this.chrono.setText(String.valueOf(minutes) + ":" + String.valueOf(seconds));
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshLine(int line) {
 		this.line.setText(String.valueOf(line));
 	}
 	
+	public void refreshNextPiece(ArrayList<Shape> nextPiece) {
+		Color color;
+		
+		for(int i=0; i<12; i++)
+		{
+			for(int j=0; j<4; j++)
+			{
+				nextPiecesGui[i][j].setBackground(Color.WHITE);
+			}	
+		}
+		
+		for(int i=0; i<3; i++)
+		{
+			for(int j=0; j<4; j++)
+	    	{
+				switch(nextPiece.get(i).getColor())
+				{
+				case 0:
+					color = Color.WHITE;
+					break;
+				case 1:
+					color = Color.BLUE;
+					break;
+				case 2:
+					color = Color.ORANGE;
+					break;
+				case 3:
+					color = Color.YELLOW;
+					break;
+				case 4:
+					color = Color.GREEN;
+					break;
+				case 5:
+					color = Color.RED;
+					break;
+				case 6:
+					color = Color.PINK;
+					break;
+				case 7:
+					color = Color.CYAN;
+					break;
+				default:
+					color = Color.WHITE;
+					break;
+				}	
+	    		nextPiecesGui[(nextPiece.get(i).getCoordY(j)+i*4)+1][nextPiece.get(i).getCoordX(j)-3].setBackground(color);
+	    	}
+		}
+	}
+	
 	public void displayMenu() {
 		contentPane.remove(gamePanel);
 		contentPane.remove(infoPanel);
+		contentPane.remove(nextPiecesPanel);
 		contentPane.add(menuPanel);
 		this.repaint();
 	}
@@ -347,7 +405,9 @@ public class Gui extends JFrame {
 	public void displayGame() {
 		contentPane.remove(menuPanel);
 		contentPane.add(gamePanel);
-		contentPane.add(infoPanel);
+		//contentPane.add(infoPanel);
+		//contentPane.add(nextPiecesPanel);
+		contentPane.add(panel);
 		infoPanel.add(playButton);
 		playButton.setText("Replay");
 		playButton.setEnabled(false);
