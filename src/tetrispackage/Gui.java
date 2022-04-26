@@ -29,6 +29,7 @@ public class Gui extends JFrame {
 	private JPanel[][] gridGui;
 	
 	public JButton playButton;
+	public JButton pauseButton;
 	public JRadioButton beginnerLevel;
 	public JRadioButton easyLevel;
 	public JRadioButton normalLevel;
@@ -55,10 +56,14 @@ public class Gui extends JFrame {
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		//Play Button
+		//Play & Pause Buttons
 		playButton = new JButton("PLAY !");
 		playButton.setBounds(450, 150, 80, 20);
 		contentPane.add(playButton);
+		pauseButton = new JButton("Pause");
+		pauseButton.setBounds(450, 300, 80, 20);
+		pauseButton.setEnabled(false);
+		contentPane.add(pauseButton);
 		
 		
 		//Level selection
@@ -80,14 +85,14 @@ public class Gui extends JFrame {
 		contentPane.add(legendLevel);
 		
 		// Displaying
-		score = new JLabel("0");
-		score.setBounds(425, 100, 30, 30);
+		score = new JLabel("Score : 0");
+		score.setBounds(400, 50, 100, 30);
 		contentPane.add(score);
-		highScore = new JLabel("0");
-		highScore.setBounds(475, 100, 30, 30);
+		highScore = new JLabel("High score : 0");
+		highScore.setBounds(400, 70, 100, 30);
 		contentPane.add(highScore);
-		chrono = new JLabel("0:0");
-		chrono.setBounds(525, 100, 50, 30);
+		chrono = new JLabel("Chrono : 0:0");
+		chrono.setBounds(400, 90, 100, 30);
 		contentPane.add(chrono);
 		
 		
@@ -195,12 +200,12 @@ public class Gui extends JFrame {
 	
 	
 	public void refreshScore(int refScore, int refHighScore) {
-		this.score.setText(String.valueOf(refScore));
-		this.highScore.setText(String.valueOf(refHighScore));
+		this.score.setText("Score : " + String.valueOf(refScore));
+		this.highScore.setText("High score : " + String.valueOf(refHighScore));
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshTime(int minutes, float seconds) {
-		this.chrono.setText(String.valueOf(minutes) + ":" + String.valueOf(seconds));
+		this.chrono.setText("Chrono : " + String.valueOf(minutes) + ":" + String.valueOf(seconds));
 	}// ---------------------------------------------------------------------------------------------
 	
 

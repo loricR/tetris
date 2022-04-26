@@ -1,5 +1,5 @@
 package tetrispackage;
-import java.util.Timer;
+
 import java.util.TimerTask;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,6 +21,7 @@ public class GameLoop implements Levels {
 	private static float seconds;
 	private static int minutes;
 	private static int time;
+	private static boolean pause;
 	
     public GameLoop() {
     	gameOver = false;
@@ -51,6 +52,23 @@ public class GameLoop implements Levels {
 			  Play();
 		  }
 		});
+		
+		//Pause button listener 
+				gui.pauseButton.addActionListener(new ActionListener()
+				{
+				  public void actionPerformed(ActionEvent e)
+				  {
+					  if (pause==true)
+					  {
+						  gui.pauseButton.setText("Pause");
+					  }
+					  else
+					  {
+						  gui.pauseButton.setText("Resume");
+					  }
+					  pause = !pause;
+				  }
+				});
 		
 		//Level selection listeners
 		gui.beginnerLevel.addActionListener(new ActionListener()
@@ -113,6 +131,7 @@ public class GameLoop implements Levels {
     
     public void Play() {
     	ResetGame();
+    	gui.pauseButton.setEnabled(true);
     	gui.requestFocus();
     	
     	nextPiece.add(randomPiece());
@@ -145,74 +164,79 @@ public class GameLoop implements Levels {
 
     static class RepeatedTask extends TimerTask {
         public void run() {
-        	count ++;
-        	time+=1;
-        	minutes = time/600;
-        	seconds = (float)(time%600)/10;
-        	//System.out.println("temps : "+minutes+" : "+seconds);
-        	gui.refreshTime(minutes, seconds);
-        	gui.refreshScore(grid.getScore(), grid.getHighScore());
-        	
-        	if(count >= level)
+        	if (!pause)
         	{
-        		count = 0;
-	            if(!shape.isStuckDown() && !grid.gridFilledDown(shape))
-				{
-	            	grid.resetPosition(shape);
-					shape.down();
-					
-					grid.refreshPosition(shape);
-					gui.refreshGridGui(grid);
-					gui.requestFocus();
-					for(int i=0; i<20; i++)
-					{
-						for(int j=0; j<10; j++)
-						{
-							System.out.print(" "+grid.getGrid()[i][j]);
-						}
-						System.out.println();
-					}
-					System.out.println("\r\n");
-				}
-	            else
-	            {
-	            	grid.removeFullLine();
-	            	gui.refreshGridGui(grid);
-	            	System.out.println("score : "+grid.getScore());
-					shape = nextPiece.get(0);
-					nextPiece.remove(0);
-					nextPiece.add(randomPiece());
-					if(grid.canSpawn(shape))
-					{
-						grid.spawnPiece(shape);
-						hardDropped = false;
-					}
-					else
-					{
-						this.cancel();
-						gameOver = true;
-						int highScored = grid.saveHighScore();
-						if(highScored == 0)
-						{
-							System.out.println("You have tied the high score !");
-						}
-						else if(highScored == 1)
-						{
-							System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
-						}
-						
-						System.out.println("Game Over ! ");
-						
-						gui.playButton.setText("Replay");
-						gui.playButton.setEnabled(true);
-						gui.beginnerLevel.setEnabled(true);
-						gui.easyLevel.setEnabled(true);
-						gui.normalLevel.setEnabled(true);
-						gui.hardLevel.setEnabled(true);
-						gui.legendLevel.setEnabled(true);
-					}
-	            }
+        		count ++;
+            	time+=1;
+            	minutes = time/600;
+            	seconds = (float)(time%600)/10;
+            	//System.out.println("temps : "+minutes+" : "+seconds);
+            	gui.refreshTime(minutes, seconds);
+            	gui.refreshScore(grid.getScore(), grid.getHighScore());
+            	
+            	if(count >= level)
+            	{
+            		count = 0;
+    	            if(!shape.isStuckDown() && !grid.gridFilledDown(shape))
+    				{
+    	            	grid.resetPosition(shape);
+    					shape.down();
+    					
+    					grid.refreshPosition(shape);
+    					gui.refreshGridGui(grid);
+    					gui.requestFocus();
+    					for(int i=0; i<20; i++)
+    					{
+    						for(int j=0; j<10; j++)
+    						{
+    							System.out.print(" "+grid.getGrid()[i][j]);
+    						}
+    						System.out.println();
+    					}
+    					System.out.println("\r\n");
+    				}
+    	            else
+    	            {
+    	            	grid.removeFullLine();
+    	            	gui.refreshGridGui(grid);
+    	            	System.out.println("score : "+grid.getScore());
+    					shape = nextPiece.get(0);
+    					nextPiece.remove(0);
+    					nextPiece.add(randomPiece());
+    					if(grid.canSpawn(shape))
+    					{
+    						grid.spawnPiece(shape);
+    						hardDropped = false;
+    					}
+    					else
+    					{
+    						this.cancel();
+    						gameOver = true;
+    						int highScored = grid.saveHighScore();
+    						if(highScored == 0)
+    						{
+    							System.out.println("You have tied the high score !");
+    						}
+    						else if(highScored == 1)
+    						{
+    							System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
+    						}
+    						
+    						System.out.println("Game Over ! ");
+    						
+    						gui.playButton.setText("Replay");
+    						gui.playButton.setEnabled(true);
+    						gui.pauseButton.setEnabled(false);
+    						gui.beginnerLevel.setEnabled(true);
+    						gui.easyLevel.setEnabled(true);
+    						gui.normalLevel.setEnabled(true);
+    						gui.hardLevel.setEnabled(true);
+    						gui.legendLevel.setEnabled(true);
+    					}
+    	            }
+            	}
         	}
+        	       	
         }
     }
     
