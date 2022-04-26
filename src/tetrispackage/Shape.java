@@ -64,13 +64,10 @@ public abstract class Shape {
     }
     
     public void down() {
-    	/*if(!isStuckDown())
-    	{*/
-	    	for(int i=0; i<4; i++) 
-	    	{
-	    		setCoord(i, coord[i][0], coord[i][1]+1);	
-	    	}
-    	//}
+    	for(int i=0; i<4; i++) 
+    	{
+    		setCoord(i, coord[i][0], coord[i][1]+1);	
+    	}
     }
     
     public boolean isStuckLeft() {
