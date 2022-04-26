@@ -230,6 +230,7 @@ public class GameLoop implements Levels {
 							
 							//gui.playButton.setText("Replay");
 							gui.playButton.setEnabled(true);
+							gui.pauseButton.setEnabled(false);
 							/*gui.beginnerLevel.setEnabled(true);
 							gui.easyLevel.setEnabled(true);
 							gui.normalLevel.setEnabled(true);
