@@ -23,6 +23,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -53,10 +54,12 @@ public class Gui extends JFrame {
 	public JRadioButton hardLevel;
 	public JRadioButton legendLevel;
 	
-	private JLabel score, highScore, chrono, line;
-	private JLabel tScore, tHighScore, tChrono, tLine;
+	private JLabel score, highScore, chrono, line, level;
+	private JLabel tScore, tHighScore, tChrono, tLine, tLevel;
+	private JLabel tGameOver; 
+	private JTextArea gameOver;
 	
-	private JPanel menuPanel;
+	private JPanel menuPanel, endPanel;
 	
 	/*private BufferedImage pictureI, pictureJ, pictureL, pictureO, pictureS, pictureZ, pictureT;
 	private JLabel[][] picLabel;
@@ -73,6 +76,12 @@ public class Gui extends JFrame {
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		endPanel = new JPanel();
+		//FlowLayout eFlowLayout = (FlowLayout) endPanel.getLayout();
+		//eFlowLayout.setAlignment(FlowLayout.CENTER);
+		endPanel.setLayout(new BoxLayout(endPanel, BoxLayout.Y_AXIS));
+		endPanel.setBounds(300, 60, 250, 80);
 		
 		panel = new JPanel();
 		panel.setBounds(426, 50, 125, 459);
@@ -114,6 +123,20 @@ public class Gui extends JFrame {
 		
 		//contentPane.add(nextPiecesPanel);
 		
+		tGameOver = new JLabel("GAME OVER");
+		gameOver = new JTextArea();
+		gameOver.setEnabled(false);
+		gameOver.setLineWrap(true);
+		//gameOver.setBackground(Color.WHITE);
+		//gameOver.setForeground(Color.BLACK);
+		gameOver.setDisabledTextColor(Color.BLACK);
+		tGameOver.setLabelFor(gameOver);
+		tGameOver.setBorder(new EmptyBorder(0, 0, 20, 0));
+		endPanel.add(tGameOver);
+		endPanel.add(gameOver);
+		//endPanel.setLayout(new FlowLayout());;
+		//contentPane.add(endPanel);
+		
 		//Play & Pause Buttons
 		playButton = new JButton("PLAY !");
 		playButton.setBounds(450, 150, 80, 20);
@@ -144,6 +167,11 @@ public class Gui extends JFrame {
 		tChrono.setLabelFor(chrono);
 		infoPanel.add(tChrono);
 		infoPanel.add(chrono);
+		tLevel = new JLabel("Level");
+		level = new JLabel("0");
+		tLevel.setLabelFor(level);
+		infoPanel.add(tLevel);
+		infoPanel.add(level);
 		tScore = new JLabel("Score");
 		score = new JLabel("0");
 		tScore.setLabelFor(score);
@@ -340,6 +368,10 @@ public class Gui extends JFrame {
 		this.chrono.setText(String.valueOf(minutes) + ":" + String.valueOf(seconds));
 	}// ---------------------------------------------------------------------------------------------
 	
+	public void refreshLevel(int level) {
+		this.level.setText(String.valueOf(level));
+	}
+	
 	public void refreshLine(int line) {
 		this.line.setText(String.valueOf(line));
 	}
@@ -395,15 +427,17 @@ public class Gui extends JFrame {
 	}
 	
 	public void displayMenu() {
-		contentPane.remove(gamePanel);
-		contentPane.remove(infoPanel);
-		contentPane.remove(nextPiecesPanel);
+		//contentPane.remove(gamePanel);
+		//contentPane.remove(infoPanel);
+		//contentPane.remove(nextPiecesPanel);
+		contentPane.removeAll();
 		contentPane.add(menuPanel);
 		this.repaint();
 	}
 	
 	public void displayGame() {
-		contentPane.remove(menuPanel);
+		//contentPane.remove(menuPanel);
+		contentPane.removeAll();
 		contentPane.add(gamePanel);
 		//contentPane.add(infoPanel);
 		//contentPane.add(nextPiecesPanel);
@@ -411,6 +445,18 @@ public class Gui extends JFrame {
 		infoPanel.add(playButton);
 		playButton.setText("Replay");
 		playButton.setEnabled(false);
+		this.repaint();
+	}
+	
+	public void displayGameOver(String text) {
+		contentPane.removeAll();
+		contentPane.add(endPanel);
+		gameOver.setText(text);
+		contentPane.add(gamePanel);
+		contentPane.add(panel);
+		infoPanel.add(playButton);
+		playButton.setText("Replay");
+		playButton.setEnabled(true);
 		this.repaint();
 	}
 

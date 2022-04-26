@@ -37,6 +37,10 @@ public class Grid {
     	return this.removedLines;
     }
     
+    public int getLastRemovedLines() {
+    	return this.lastLines;
+    }
+    
     public int getScore() {
     	return this.score;
     }
