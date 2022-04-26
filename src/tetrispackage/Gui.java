@@ -28,6 +28,9 @@ public class Gui extends JFrame {
 	private JPanel panel;
 	private JPanel[][] gridGui;
 	
+	private JPanel nextPiecesPanel;
+	private JPanel[][] nextPiecesGui;
+	
 	public JButton playButton;
 	public JButton pauseButton;
 	public JRadioButton beginnerLevel;
@@ -55,6 +58,10 @@ public class Gui extends JFrame {
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
+		
+		nextPiecesPanel = new JPanel();
+		nextPiecesPanel.setBackground(Color.WHITE);
+		contentPane.add(nextPiecesPanel);
 		
 		//Play & Pause Buttons
 		playButton = new JButton("PLAY !");
@@ -110,6 +117,23 @@ public class Gui extends JFrame {
 		}
 		panel.setLayout(new GridLayout(20, 10,1,1));
 		panel.setBounds(50, 50, 325, 650);
+		
+		
+		nextPiecesGui = new JPanel[12][4];
+		for(int i=0; i<12; i++)
+		{
+			for(int j=0; j<4; j++)
+			{
+				nextPiecesGui[i][j] = new JPanel();
+				nextPiecesPanel.add(nextPiecesGui[i][j]);
+				nextPiecesGui[i][j].setBackground(Color.GRAY);
+				nextPiecesGui[i][j].setPreferredSize(new Dimension(25,25));
+			}	
+		}
+		nextPiecesPanel.setLayout(new GridLayout(12, 4,1,1));
+		nextPiecesPanel.setBounds(425, 400, 100, 300);
+		
+		
 	} // ---------------------------------------------------------------------------------------------
 	
 	
@@ -155,8 +179,7 @@ public class Gui extends JFrame {
 				break;
 			}
 		}
-	}  // ---------------------------------------------------------------------------------------------
-	
+	}  // ---------------------------------------------------------------------------------------------	
 	
 	public void refreshGridGui(Grid grid) {
 		for(int i=0; i<20; i++)
