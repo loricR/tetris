@@ -1,5 +1,5 @@
 package tetrispackage;
-import java.util.Timer;
+
 import java.util.TimerTask;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,6 +21,7 @@ public class GameLoop implements Levels {
 	private static float seconds;
 	private static int minutes;
 	private static int time;
+	private static boolean pause;
 	
     public GameLoop() {
     	gameOver = false;
@@ -51,6 +52,23 @@ public class GameLoop implements Levels {
 			  Play();
 		  }
 		});
+		
+		//Pause button listener 
+				gui.pauseButton.addActionListener(new ActionListener()
+				{
+				  public void actionPerformed(ActionEvent e)
+				  {
+					  if (pause==true)
+					  {
+						  gui.pauseButton.setText("Pause");
+					  }
+					  else
+					  {
+						  gui.pauseButton.setText("Resume");
+					  }
+					  pause = !pause;
+				  }
+				});
 		
 		//Level selection listeners
 		gui.beginnerLevel.addActionListener(new ActionListener()
@@ -114,6 +132,7 @@ public class GameLoop implements Levels {
     public void Play() {
     	gui.displayGame();
     	ResetGame();
+    	gui.pauseButton.setEnabled(true);
     	gui.requestFocus();
     	
     	nextPiece.add(randomPiece());
@@ -146,15 +165,7 @@ public class GameLoop implements Levels {
 
     static class RepeatedTask extends TimerTask {
         public void run() {
-        	count ++;
-        	time+=1;
-        	minutes = time/600;
-        	seconds = (float)(time%600)/10;
-        	//System.out.println("temps : "+minutes+" : "+seconds);
-        	gui.refreshTime(minutes, seconds);
-        	gui.refreshScore(grid.getScore(), grid.getHighScore());
-        	
-        	if(count >= level)
+        	if (!pause)
         	{
         		count = 0;
 	            if(!shape.isStuckDown() && !grid.gridFilledDown(shape))
@@ -216,6 +227,7 @@ public class GameLoop implements Levels {
 					}
 	            }
         	}
+        	       	
         }
     }
     

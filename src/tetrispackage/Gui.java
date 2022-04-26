@@ -40,7 +40,11 @@ public class Gui extends JFrame {
 	private JPanel infoPanel, gamePanel;
 	private JPanel[][] gridGui;
 	
+	private JPanel nextPiecesPanel;
+	private JPanel[][] nextPiecesGui;
+	
 	public JButton playButton;
+	public JButton pauseButton;
 	public JRadioButton beginnerLevel;
 	public JRadioButton easyLevel;
 	public JRadioButton normalLevel;
@@ -83,10 +87,19 @@ public class Gui extends JFrame {
 		contentPane.add(infoPanel);
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 		
-		//Play Button
+		nextPiecesPanel = new JPanel();
+		nextPiecesPanel.setBackground(Color.WHITE);
+		contentPane.add(nextPiecesPanel);
+		
+		//Play & Pause Buttons
 		playButton = new JButton("PLAY !");
 		playButton.setBounds(450, 150, 80, 20);
-		menuPanel.add(playButton);
+		contentPane.add(playButton);
+		pauseButton = new JButton("Pause");
+		pauseButton.setBounds(450, 300, 80, 20);
+		pauseButton.setEnabled(false);
+		contentPane.add(pauseButton);
+		
 		
 		//Level selection
 		beginnerLevel = new JRadioButton("Beginner");
@@ -171,9 +184,25 @@ public class Gui extends JFrame {
 				gridGui[i][j].setPreferredSize(new Dimension(25,25));
 			}	
 		}
+		panel.setLayout(new GridLayout(20, 10,1,1));
+		panel.setBounds(50, 50, 325, 650);
 		
-		gamePanel.setLayout(new GridLayout(20, 10,1,1));
-		gamePanel.setBounds(50, 50, 325, 650);
+		
+		nextPiecesGui = new JPanel[12][4];
+		for(int i=0; i<12; i++)
+		{
+			for(int j=0; j<4; j++)
+			{
+				nextPiecesGui[i][j] = new JPanel();
+				nextPiecesPanel.add(nextPiecesGui[i][j]);
+				nextPiecesGui[i][j].setBackground(Color.GRAY);
+				nextPiecesGui[i][j].setPreferredSize(new Dimension(25,25));
+			}	
+		}
+		nextPiecesPanel.setLayout(new GridLayout(12, 4,1,1));
+		nextPiecesPanel.setBounds(425, 400, 100, 300);
+		
+		
 	} // ---------------------------------------------------------------------------------------------
 	
 	
@@ -227,8 +256,7 @@ public class Gui extends JFrame {
 				break;
 			}
 		}
-	}  // ---------------------------------------------------------------------------------------------
-	
+	}  // ---------------------------------------------------------------------------------------------	
 	
 	public void refreshGridGui(Grid grid) {
 		for(int i=0; i<20; i++)
@@ -297,12 +325,12 @@ public class Gui extends JFrame {
 	
 	
 	public void refreshScore(int refScore, int refHighScore) {
-		this.score.setText(String.valueOf(refScore));
-		this.highScore.setText(String.valueOf(refHighScore));
+		this.score.setText("Score : " + String.valueOf(refScore));
+		this.highScore.setText("High score : " + String.valueOf(refHighScore));
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshTime(int minutes, float seconds) {
-		this.chrono.setText(String.valueOf(minutes) + ":" + String.valueOf(seconds));
+		this.chrono.setText("Chrono : " + String.valueOf(minutes) + ":" + String.valueOf(seconds));
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshLine(int line) {
