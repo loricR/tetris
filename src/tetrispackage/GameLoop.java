@@ -112,6 +112,7 @@ public class GameLoop implements Levels {
     } // ------------- end of the constructor ------------------------------
     
     public void Play() {
+    	gui.displayGame();
     	ResetGame();
     	gui.requestFocus();
     	
@@ -177,6 +178,8 @@ public class GameLoop implements Levels {
 	            else
 	            {
 	            	grid.removeFullLine();
+	            	System.out.println(""+grid.getRemovedLines());
+	            	gui.refreshLine(grid.getRemovedLines());
 	            	gui.refreshGridGui(grid);
 	            	System.out.println("score : "+grid.getScore());
 					shape = nextPiece.get(0);
@@ -203,13 +206,13 @@ public class GameLoop implements Levels {
 						
 						System.out.println("Game Over ! ");
 						
-						gui.playButton.setText("Replay");
+						//gui.playButton.setText("Replay");
 						gui.playButton.setEnabled(true);
-						gui.beginnerLevel.setEnabled(true);
+						/*gui.beginnerLevel.setEnabled(true);
 						gui.easyLevel.setEnabled(true);
 						gui.normalLevel.setEnabled(true);
 						gui.hardLevel.setEnabled(true);
-						gui.legendLevel.setEnabled(true);
+						gui.legendLevel.setEnabled(true);*/
 					}
 	            }
         	}

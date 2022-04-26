@@ -24,9 +24,6 @@ public class Grid {
     	this.score = 0;
     	this.highScore = getSavedHighScore();
     }
-
-    public Grid(int x, int y) {
-    }
     
     public int[][] getGrid() {
     	return this.grid;
@@ -317,10 +314,10 @@ public class Grid {
     		break;
     	}
     	
-    	this.removedLines += indice;
     	if(indice >= 0)
     	{
     		this.lastLines = indice;
+    		this.removedLines += (indice+1);
     	}
     }
     
@@ -330,10 +327,9 @@ public class Grid {
     	int x0 = curPiece.getCoordX(0);
     	int y0 = curPiece.getCoordY(0);
     	boolean result = true;
-    	int oldRotation = curPiece.getRotation();
-    	int newRotation = 0;
+    	int newRotation = curPiece.getRotation();
 
-    	newRotation = oldRotation + 1;
+    	newRotation++;
     	if(newRotation >= 4)
     	{
     		newRotation = 0;
@@ -344,7 +340,7 @@ public class Grid {
     		if(((x0 + curPiece.getPiece()[newRotation][k][0]) >= 10) || ((x0 + curPiece.getPiece()[newRotation][k][0]) < 0) || 
     			((y0 + curPiece.getPiece()[newRotation][k][1]) >= 20) || ((y0 + curPiece.getPiece()[newRotation][k][1]) < 0))
     		{
-    			result = false;
+    			result &= false;
     		}
     		else
     		{
@@ -361,7 +357,7 @@ public class Grid {
 	    						otherPiece &= false;
 	    					}
 	    				}
-	    				result = !otherPiece;
+	    				result &= !otherPiece;
 	    				if(!result)
 	    				{
 	    					return result;
