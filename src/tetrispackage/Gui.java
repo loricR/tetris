@@ -84,7 +84,7 @@ public class Gui extends JFrame {
 		endPanel.setBounds(300, 60, 200, 80);
 		
 		panel = new JPanel();
-		panel.setBounds(426, 50, 125, 600);
+		panel.setBounds(426, 50, 100, 600);
 		//panel.setSize(600,800);
 		gamePanel = new JPanel();
 		gamePanel.setBackground(Color.WHITE);
