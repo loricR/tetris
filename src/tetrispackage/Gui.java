@@ -136,7 +136,7 @@ public class Gui extends JFrame {
 		tGameOver.setBorder(new EmptyBorder(0, 0, 20, 0));
 		tGameOver.setFont(new Font("Serif", Font.BOLD, 20));
 		tGameOver.setBounds(50,0,200,100);
-		gameOver.setBounds(10,80,250,100);
+		gameOver.setBounds(10,80,280,100);
 		endPanel.setLayout(null);
 		endPanel.add(tGameOver);
 		endPanel.add(gameOver);
