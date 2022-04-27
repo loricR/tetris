@@ -133,6 +133,7 @@ public class Gui extends JFrame {
 		gameOver.setDisabledTextColor(Color.BLACK);
 		tGameOver.setLabelFor(gameOver);
 		tGameOver.setBorder(new EmptyBorder(0, 0, 20, 0));
+		tGameOver.setBounds(10,10,100,100);
 		endPanel.add(tGameOver);
 		endPanel.add(gameOver);
 		//endPanel.setLayout(new FlowLayout());;
@@ -500,6 +501,8 @@ public class Gui extends JFrame {
 	
 	public void displayGameOver(String text) {
 		contentPane.removeAll();
+		endPanel.setBounds(80,100,300,200);
+		endPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		contentPane.add(endPanel);
 		gameOver.setText(text);
 		contentPane.add(gamePanel);
