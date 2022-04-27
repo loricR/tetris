@@ -385,7 +385,41 @@ public class Gui extends JFrame {
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshLevel(int level) {
-		this.level.setText(String.valueOf(level));
+		switch(level) {
+		case 1 :
+			this.level.setText(String.valueOf(level) + " (beginner)");
+			break;
+		case 2 :
+			this.level.setText(String.valueOf(level) + " (beginner)");
+			break;
+		case 3 :
+			this.level.setText(String.valueOf(level) + " (easy)");
+			break;
+		case 4 :
+			this.level.setText(String.valueOf(level) + " (easy)");
+			break;
+		case 5 :
+			this.level.setText(String.valueOf(level) + " (normal)");
+			break;
+		case 6 :
+			this.level.setText(String.valueOf(level) + " (normal)");
+			break;
+		case 7 :
+			this.level.setText(String.valueOf(level) + " (normal)");
+			break;
+		case 8 :
+			this.level.setText(String.valueOf(level) + " (hard)");
+			break;
+		case 9 :
+			this.level.setText(String.valueOf(level) + " (hard)");
+			break;
+		case 10 :
+			this.level.setText(String.valueOf(level) + " (legend)");
+			break;
+		
+		}
+		
+		//this.level.setText(String.valueOf(level));
 	}
 	
 	public void refreshLine(int line) {
