@@ -1,7 +1,4 @@
 package tetrispackage;
-import java.util.*;
-import javax.swing.*;
-import java.awt.Color;
 
 public abstract class Shape {
 

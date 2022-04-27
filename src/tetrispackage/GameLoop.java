@@ -2,10 +2,8 @@ package tetrispackage;
 
 import java.util.TimerTask;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JComponent.*;
 import java.awt.event.*;
 
 
@@ -131,7 +129,7 @@ public class GameLoop implements Levels {
 		  }
 		});
 		
-    } // ------------- end of the constructor ------------------------------
+    }
     
     public void Play() {
     	gui.displayGame();
@@ -177,7 +175,6 @@ public class GameLoop implements Levels {
             	time+=1;
             	minutes = time/600;
             	seconds = (float)(time%600)/10;
-            	//System.out.println("temps : "+minutes+" : "+seconds);
             	gui.refreshTime(minutes, seconds);
             	gui.refreshScore(grid.getScore(), grid.getHighScore());
             	
@@ -192,22 +189,12 @@ public class GameLoop implements Levels {
 						grid.refreshPosition(shape);
 						gui.refreshGridGui(grid);
 						gui.requestFocus();
-						for(int i=0; i<20; i++)
-						{
-							for(int j=0; j<10; j++)
-							{
-								System.out.print(" "+grid.getGrid()[i][j]);
-							}
-							System.out.println();
-						}
-						System.out.println("\r\n");
 					}
 		            else
 		            {
 		            	grid.removeFullLine();
 		            	gui.refreshLine(grid.getRemovedLines());
 		            	gui.refreshGridGui(grid);
-		            	System.out.println("score : "+grid.getScore());
 						shape = nextPiece.get(0);
 						nextPiece.remove(0);
 						nextPiece.add(randomPiece());
@@ -233,26 +220,18 @@ public class GameLoop implements Levels {
 							if(highScored == 0)
 							{
 								gui.displayGameOver("You have tied the high score !");
-								System.out.println("You have tied the high score !");
 							}
 							else if(highScored == 1)
 							{
 								gui.displayGameOver("Congratulations ! \r\nYou have the new high score ! \r\nThe previous high score was : "+grid.getHighScore()+"\r\nYour score is : "+grid.getScore());
-								System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
 							}
 							else
 							{
 								gui.displayGameOver("Your score is : " + grid.getScore() + "\r\nYou did not beat your high score \r\nYou will do better next time \r\n \r\nPlay again by clicking on the 'Replay' button");
 							}
 							
-							//gui.playButton.setText("Replay");
 							gui.playButton.setEnabled(true);
 							gui.pauseButton.setEnabled(false);
-							/*gui.beginnerLevel.setEnabled(true);
-							gui.easyLevel.setEnabled(true);
-							gui.normalLevel.setEnabled(true);
-							gui.hardLevel.setEnabled(true);
-							gui.legendLevel.setEnabled(true);*/
 						}
 		            }
             	}

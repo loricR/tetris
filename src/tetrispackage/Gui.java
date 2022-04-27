@@ -1,41 +1,22 @@
 package tetrispackage;
 
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.UIManager;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JComponent.*;
 import javax.swing.BoxLayout;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
-import java.awt.Component;
+
 
 public class Gui extends JFrame {
 
@@ -62,12 +43,7 @@ public class Gui extends JFrame {
 	
 	private JPanel menuPanel, endPanel;
 	
-	/*private BufferedImage pictureI, pictureJ, pictureL, pictureO, pictureS, pictureZ, pictureT;
-	private JLabel[][] picLabel;
-	private JLabel emptyLabel, labelI, labelJ, labelL, labelO, labelS, labelZ, labelT;*/
 
-	
-	// ---------------------------------------------------------------------------------------------
 	public Gui() {
 		this.setTitle("TETRIS");
 		this.setSize(600,800);
@@ -78,14 +54,11 @@ public class Gui extends JFrame {
 		setContentPane(contentPane);
 		
 		endPanel = new JPanel();
-		//FlowLayout eFlowLayout = (FlowLayout) endPanel.getLayout();
-		//eFlowLayout.setAlignment(FlowLayout.CENTER);
 		endPanel.setLayout(new BoxLayout(endPanel, BoxLayout.Y_AXIS));
 		endPanel.setBounds(300, 60, 200, 80);
 		
 		panel = new JPanel();
 		panel.setBounds(426, 50, 100, 600);
-		//panel.setSize(600,800);
 		gamePanel = new JPanel();
 		gamePanel.setBackground(Color.WHITE);
 		
@@ -95,8 +68,6 @@ public class Gui extends JFrame {
 		menuPanel.setBounds(50, 60, 500, 650);
 		contentPane.setLayout(null);
 		contentPane.add(menuPanel);
-		//contentPane.add(panel);
-		//contentPane.add(gamePanel);
 		
 		
 		infoPanel = new JPanel();
@@ -122,27 +93,19 @@ public class Gui extends JFrame {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(nextPiecesPanel);
 		panel.add(infoPanel);
-		
-		//contentPane.add(nextPiecesPanel);
-		
+				
 		tGameOver = new JLabel("GAME OVER !!");
 		gameOver = new JTextArea();
 		gameOver.setEnabled(false);
 		gameOver.setLineWrap(true);
-		//gameOver.setBackground(Color.WHITE);
-		//gameOver.setForeground(Color.BLACK);
 		gameOver.setDisabledTextColor(Color.BLACK);
-		//tGameOver.setLabelFor(gameOver);
 		tGameOver.setBorder(new EmptyBorder(0, 0, 20, 0));
 		tGameOver.setFont(new Font("Serif", Font.BOLD, 20));
 		tGameOver.setBounds(80,0,200,100);
 		gameOver.setBounds(10,80,280,100);
 		endPanel.setLayout(null);
 		endPanel.add(tGameOver);
-		endPanel.add(gameOver);
-		//endPanel.setLayout(new FlowLayout());;
-		//contentPane.add(endPanel);
-		
+		endPanel.add(gameOver);		
 		
 		//Text menu
 		textMenu = new JLabel("<html>Please choose a starting level <br> !!! This level will increase during the game !!!</html>");
@@ -175,12 +138,10 @@ public class Gui extends JFrame {
 		menuPanel.add(hardLevel);
 		menuPanel.add(legendLevel);
 		
-		
-		//contentPane.add(gamePanel, BorderLayout.CENTER);
-		
+				
 		// Displaying
 		tChrono = new JLabel("Time");
-		chrono = new JLabel("0:0");
+		chrono = new JLabel("00:00");
 		tChrono.setLabelFor(chrono);
 		infoPanel.add(tChrono);
 		infoPanel.add(chrono);
@@ -216,29 +177,6 @@ public class Gui extends JFrame {
 		
 		
 		gridGui = new JPanel[20][10];
-		/*picLabel = new JLabel[20][10];
-		emptyLabel = new JLabel();
-		
-		try {
-			pictureI = ImageIO.read(new File("picture/pictureI.png"));
-			pictureJ = ImageIO.read(new File("picture/pictureJ.png"));
-			pictureL = ImageIO.read(new File("picture/pictureL.png"));
-			pictureO = ImageIO.read(new File("picture/pictureO.png"));
-			pictureS = ImageIO.read(new File("picture/pictureS.png"));
-			pictureZ = ImageIO.read(new File("picture/pictureZ.png"));
-			pictureT = ImageIO.read(new File("picture/pictureT.png"));
-			labelI = new JLabel(new ImageIcon(ImageIO.read(new File("picture/pictureI.png"))));
-			labelJ = new JLabel(new ImageIcon(ImageIO.read(new File("picture/pictureJ.png"))));
-			labelL = new JLabel(new ImageIcon(ImageIO.read(new File("picture/pictureL.png"))));
-			labelO = new JLabel(new ImageIcon(ImageIO.read(new File("picture/pictureO.png"))));
-			labelS = new JLabel(new ImageIcon(ImageIO.read(new File("picture/pictureS.png"))));
-			labelZ = new JLabel(new ImageIcon(ImageIO.read(new File("picture/pictureZ.png"))));
-			labelT = new JLabel(new ImageIcon(ImageIO.read(new File("picture/pictureT.png"))));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
 		
 		for(int i=0; i<20; i++)
 		{
@@ -247,11 +185,6 @@ public class Gui extends JFrame {
 				gridGui[i][j] = new JPanel();
 				gamePanel.add(gridGui[i][j]);
 				gridGui[i][j].setBackground(Color.GRAY);
-				//picLabel[i][j] = new JLabel();
-				//picLabel[i][j].setPreferredSize(new Dimension(25,25));
-				//picLabel[i][j].setLayout(null);
-				//gridGui[i][j].add("Center", picLabel[i][j]);
-				//gamePanel.add(picLabel[i][j]);
 				gridGui[i][j].setPreferredSize(new Dimension(25,25));
 			}	
 		}
@@ -259,7 +192,7 @@ public class Gui extends JFrame {
 		gamePanel.setBounds(50, 50, 325, 650);
 		
 		
-	} // ---------------------------------------------------------------------------------------------
+	}
 	
 	
 	public void refreshPiecePosition(Grid grid) {
@@ -280,39 +213,31 @@ public class Gui extends JFrame {
 			{
 			case 1:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.BLUE);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = labelL;
 				break;
 			case 2:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.ORANGE);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = labelJ;
 				break;
 			case 3:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.YELLOW);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = labelO;
 				break;
 			case 4:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.GREEN);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = labelS;
 				break;
 			case 5:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.RED);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = labelZ;
 				break;
 			case 6:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.PINK);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = labelT;
 				break;
 			case 7:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.CYAN);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = labelI;
 				break;
 			default:
 				gridGui[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)].setBackground(Color.WHITE);
-				//picLabel[grid.getCurPiece().getCoordY(i)][grid.getCurPiece().getCoordX(i)] = emptyLabel;
 				break;
 			}
 		}
-	}  // ---------------------------------------------------------------------------------------------	
+	} 
 	
 	public void refreshGridGui(Grid grid) {
 		for(int i=0; i<20; i++)
@@ -322,56 +247,31 @@ public class Gui extends JFrame {
 				switch(grid.getGrid()[i][j])
 				{
 				case 0:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.WHITE);
-					//picLabel[i][j] = emptyLabel;
 					break;
 				case 1:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.BLUE);
-					//picLabel[i][j] = labelL;
-					//gridGui[i][j].add(picLabel[i][j]);
 					break;
 				case 2:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.ORANGE);
-					//picLabel[i][j] = labelJ;
-					//gridGui[i][j].add(picLabel[i][j]);
 					break;
 				case 3:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.YELLOW);
-					//picLabel[i][j] = labelO;
-					//gridGui[i][j].add(picLabel[i][j]);
 					break;
 				case 4:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.GREEN);
-					//picLabel[i][j] = labelS;
-					//gridGui[i][j].add(picLabel[i][j]);
 					break;
 				case 5:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.RED);
-					//picLabel[i][j] = labelZ;
-					//gridGui[i][j].add(picLabel[i][j]);
 					break;
 				case 6:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.PINK);
-					//picLabel[i][j] = labelT;
-					//gridGui[i][j].add(picLabel[i][j]);
 					break;
 				case 7:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.CYAN);
-					//picLabel[i][j] = labelI;
-					//gridGui[i][j].add(picLabel[i][j]);
 					break;
 				default:
-					//gridGui[i][j].remove(picLabel[i][j]);
 					gridGui[i][j].setBackground(Color.WHITE);
-					//picLabel[i][j] = emptyLabel;
 					break;
 				}	
 			}
@@ -386,7 +286,7 @@ public class Gui extends JFrame {
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshTime(int minutes, float seconds) {
-		this.chrono.setText(String.valueOf(minutes) + ":" + String.valueOf(seconds));
+		this.chrono.setText(String.format("%02d:%04.1f", minutes, seconds));
 	}// ---------------------------------------------------------------------------------------------
 	
 	public void refreshLevel(int level) {
@@ -422,9 +322,7 @@ public class Gui extends JFrame {
 			this.level.setText(String.valueOf(level) + " (legend)");
 			break;
 		
-		}
-		
-		//this.level.setText(String.valueOf(level));
+		}		
 	}
 	
 	public void refreshLine(int line) {
@@ -482,19 +380,13 @@ public class Gui extends JFrame {
 	}
 	
 	public void displayMenu() {
-		//contentPane.remove(gamePanel);
-		//contentPane.remove(infoPanel);
-		//contentPane.remove(nextPiecesPanel);
 		contentPane.removeAll();
 		contentPane.add(menuPanel);
 		this.repaint();
 	}
 	
 	public void displayGame() {
-		//contentPane.remove(menuPanel);
 		contentPane.removeAll();
-		//contentPane.add(infoPanel);
-		//contentPane.add(nextPiecesPanel);
 		contentPane.add(panel);
 		contentPane.add(gamePanel);
 		infoPanel.add(playButton);
@@ -522,13 +414,10 @@ public class Gui extends JFrame {
 		{
 			for(int j=0; j<10; j++)
 			{		
-				gridGui[i][j].setBackground(Color.GRAY);
-					
+				gridGui[i][j].setBackground(Color.GRAY);	
 			}
 		}
 	}
 	
 
 }
-
-

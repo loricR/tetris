@@ -1,6 +1,4 @@
 package tetrispackage;
-import java.util.*;
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -145,7 +143,7 @@ public class Grid {
     	curPiece = shape;
     	for(int i=0; i<4; i++) 
     	{
-    		grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 0; //On efface l'ancienne position de la piece
+    		grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = 0; //Clear the previous position of the piece
     	}
     }
     
@@ -153,7 +151,7 @@ public class Grid {
     	curPiece = shape;
     	for(int i=0; i<4; i++) 
     	{
-        	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = curPiece.getColor(); //On remplace la piece aux nouvelles coordonnées
+        	grid[curPiece.getCoordY(i)][curPiece.getCoordX(i)] = curPiece.getColor(); //Replace the piece to the new coordinates
     	}
     	
     }
