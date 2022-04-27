@@ -1,6 +1,4 @@
 package tetrispackage;
-import java.awt.Color;
-import java.util.*;
 
 public class TPiece extends Shape {
 
@@ -26,7 +24,6 @@ public class TPiece extends Shape {
 			    	  {-1,0}, {0,-1},
 			    			 {0,1}}};
     	this.piece = tmp;
-    	//this.pieceR = temp;
     }	
     
     public void setSpawnCoord() {

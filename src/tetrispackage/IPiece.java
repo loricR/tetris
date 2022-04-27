@@ -1,6 +1,4 @@
 package tetrispackage;
-import java.util.*;
-import java.awt.Color;
 
 public class IPiece extends Shape {
     

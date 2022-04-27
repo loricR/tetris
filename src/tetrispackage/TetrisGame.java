@@ -1,11 +1,7 @@
 package tetrispackage;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-import javax.swing.JComponent;
-
-//import java.awt.*;
 import javax.swing.*;
 
 public class TetrisGame extends JFrame{
