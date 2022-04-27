@@ -160,6 +160,7 @@ public class GameLoop implements Levels {
     	gameOver = false;
     	nextPiece.clear();
     	level = BEGINNER;
+    	this.lineLevelUp=10;
     	this.time = 0;
     	this.seconds = 0;
     	this.minutes = 0;
