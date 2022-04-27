@@ -63,10 +63,12 @@ public class GameLoop implements Levels {
 					  if (pause==true)
 					  {
 						  gui.pauseButton.setText("Pause");
+						  gui.refreshGridGui(grid);
 					  }
 					  else
 					  {
 						  gui.pauseButton.setText("Resume");
+						  gui.pauseGui();
 					  }
 					  pause = !pause;
 				  }
@@ -284,7 +286,7 @@ public class GameLoop implements Levels {
     }
     
     public static Shape randomPiece() {
-    	/*int r = new Random().nextInt(7);
+    	int r = new Random().nextInt(7);
     	switch(r)
     	{
     	case 0:
@@ -303,7 +305,6 @@ public class GameLoop implements Levels {
     		return new TPiece();
     	default:
     		return null;
-    	}*/
-    	return new IPiece();
+    	}
     }
 }

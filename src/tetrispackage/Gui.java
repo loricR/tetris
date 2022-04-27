@@ -18,7 +18,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -46,6 +45,7 @@ public class Gui extends JFrame {
 	private JPanel nextPiecesPanel;
 	private JPanel[][] nextPiecesGui;
 	
+	private JLabel textMenu;
 	public JButton playButton;
 	public JButton pauseButton;
 	public JRadioButton beginnerLevel;
@@ -75,7 +75,6 @@ public class Gui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		endPanel = new JPanel();
 		//FlowLayout eFlowLayout = (FlowLayout) endPanel.getLayout();
@@ -84,7 +83,7 @@ public class Gui extends JFrame {
 		endPanel.setBounds(300, 60, 250, 80);
 		
 		panel = new JPanel();
-		panel.setBounds(426, 50, 125, 459);
+		panel.setBounds(426, 50, 125, 600);
 		//panel.setSize(600,800);
 		gamePanel = new JPanel();
 		gamePanel.setBackground(Color.WHITE);
@@ -93,20 +92,20 @@ public class Gui extends JFrame {
 		FlowLayout flowLayout = (FlowLayout) menuPanel.getLayout();
 		flowLayout.setAlignment(FlowLayout.CENTER);
 		menuPanel.setBounds(50, 60, 500, 650);
+		contentPane.setLayout(null);
 		contentPane.add(menuPanel);
 		//contentPane.add(panel);
 		//contentPane.add(gamePanel);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
 		
 		infoPanel = new JPanel();
 		infoPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		infoPanel.setBounds(400, 129, 100, 200);
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 		
 		nextPiecesPanel = new JPanel();
 		nextPiecesPanel.setBorder(new EmptyBorder(0, 0, 50, 0));
-		nextPiecesPanel.setBounds(425, 400, 100, 300);
 		nextPiecesGui = new JPanel[12][4];
+		nextPiecesPanel.setLayout(new GridLayout(12, 4,1,1));
 		for(int i=0; i<12; i++)
 		{
 			for(int j=0; j<4; j++)
@@ -114,10 +113,12 @@ public class Gui extends JFrame {
 				nextPiecesGui[i][j] = new JPanel();
 				nextPiecesPanel.add(nextPiecesGui[i][j]);
 				nextPiecesGui[i][j].setBackground(Color.GRAY);
-				nextPiecesGui[i][j].setPreferredSize(new Dimension(25,25));
+				nextPiecesGui[i][j].setPreferredSize(new Dimension(25,30));
 			}	
 		}
-		nextPiecesPanel.setLayout(new GridLayout(12, 4,1,1));
+		
+		
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(nextPiecesPanel);
 		panel.add(infoPanel);
 		
@@ -137,28 +138,39 @@ public class Gui extends JFrame {
 		//endPanel.setLayout(new FlowLayout());;
 		//contentPane.add(endPanel);
 		
-		//Play & Pause Buttons
+		
+		//Text menu
+		textMenu = new JLabel("<html>Please choose a starting level <br> !!! This level will increase during the game !!!</html>");
+		textMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		textMenu.setBounds(0, -150, 500, 500);
+		
+		//Play Button
 		playButton = new JButton("PLAY !");
-		playButton.setBounds(450, 150, 80, 20);
-		menuPanel.add(playButton);
+		playButton.setBounds(200, 400, 80, 20);
 		
 		//Level selection
 		beginnerLevel = new JRadioButton("Beginner");
-		beginnerLevel.setBounds(450, 180, 80, 20);
-		menuPanel.add(beginnerLevel);
+		beginnerLevel.setBounds(200, 180, 80, 20);
 		beginnerLevel.setSelected(true);
 		easyLevel = new JRadioButton("Easy");
-		easyLevel.setBounds(450, 200, 80, 20);
-		menuPanel.add(easyLevel);
+		easyLevel.setBounds(200, 210, 80, 20);
 		normalLevel = new JRadioButton("Normal");
-		normalLevel.setBounds(450, 220, 80, 20);
-		menuPanel.add(normalLevel);
+		normalLevel.setBounds(200, 240, 80, 20);
 		hardLevel = new JRadioButton("Hard");
-		hardLevel.setBounds(450, 240, 80, 20);
-		menuPanel.add(hardLevel);
+		hardLevel.setBounds(200, 270, 80, 20);
 		legendLevel = new JRadioButton("Legend");
-		legendLevel.setBounds(450, 260, 80, 20);
+		legendLevel.setBounds(200, 300, 80, 20);
+		
+		menuPanel.setLayout(null);
+		menuPanel.add(textMenu);
+		menuPanel.add(playButton);
+		menuPanel.add(beginnerLevel);
+		menuPanel.add(easyLevel);
+		menuPanel.add(normalLevel);
+		menuPanel.add(hardLevel);
 		menuPanel.add(legendLevel);
+		
+		
 		//contentPane.add(gamePanel, BorderLayout.CENTER);
 		
 		// Displaying
@@ -167,28 +179,32 @@ public class Gui extends JFrame {
 		tChrono.setLabelFor(chrono);
 		infoPanel.add(tChrono);
 		infoPanel.add(chrono);
+		infoPanel.add(new JLabel(" "));
 		tLevel = new JLabel("Level");
 		level = new JLabel("0");
 		tLevel.setLabelFor(level);
 		infoPanel.add(tLevel);
 		infoPanel.add(level);
+		infoPanel.add(new JLabel(" "));
 		tScore = new JLabel("Score");
 		score = new JLabel("0");
 		tScore.setLabelFor(score);
 		infoPanel.add(tScore);
 		infoPanel.add(score);
+		infoPanel.add(new JLabel(" "));
 		tLine = new JLabel("Lines");
 		line = new JLabel("0");
 		tLine.setLabelFor(line);
 		infoPanel.add(tLine);
 		infoPanel.add(line);
+		infoPanel.add(new JLabel(" "));
 		tHighScore = new JLabel("High score");
 		highScore = new JLabel("0");
 		tHighScore.setLabelFor(highScore);
 		infoPanel.add(tHighScore);
 		infoPanel.add(highScore);
+		infoPanel.add(new JLabel(" "));
 		pauseButton = new JButton("Pause");
-		pauseButton.setBounds(450, 300, 80, 20);
 		pauseButton.setEnabled(false);
 		infoPanel.add(pauseButton);
 		
@@ -438,10 +454,10 @@ public class Gui extends JFrame {
 	public void displayGame() {
 		//contentPane.remove(menuPanel);
 		contentPane.removeAll();
-		contentPane.add(gamePanel);
 		//contentPane.add(infoPanel);
 		//contentPane.add(nextPiecesPanel);
 		contentPane.add(panel);
+		contentPane.add(gamePanel);
 		infoPanel.add(playButton);
 		playButton.setText("Replay");
 		playButton.setEnabled(false);
@@ -459,5 +475,19 @@ public class Gui extends JFrame {
 		playButton.setEnabled(true);
 		this.repaint();
 	}
+	
+	public void pauseGui() {
+		for(int i=0; i<20; i++)
+		{
+			for(int j=0; j<10; j++)
+			{		
+				gridGui[i][j].setBackground(Color.GRAY);
+					
+			}
+		}
+	}
+	
 
 }
+
+
