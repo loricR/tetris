@@ -58,7 +58,7 @@ public class Gui extends JFrame {
 		endPanel.setBounds(300, 60, 200, 80);
 		
 		panel = new JPanel();
-		panel.setBounds(426, 50, 100, 600);
+		panel.setBounds(426, 50, 120, 600);
 		gamePanel = new JPanel();
 		gamePanel.setBackground(Color.WHITE);
 		
@@ -118,7 +118,7 @@ public class Gui extends JFrame {
 		
 		//Level selection
 		beginnerLevel = new JRadioButton("Beginner");
-		beginnerLevel.setBounds(200, 180, 80, 20);
+		beginnerLevel.setBounds(200, 180, 100, 20);
 		beginnerLevel.setSelected(true);
 		easyLevel = new JRadioButton("Easy");
 		easyLevel.setBounds(200, 210, 80, 20);

@@ -159,6 +159,7 @@ public class GameLoop implements Levels {
     	gui.refreshGridGui(grid);
     	gameOver = false;
     	nextPiece.clear();
+    	level = BEGINNER;
     	this.time = 0;
     	this.seconds = 0;
     	this.minutes = 0;
