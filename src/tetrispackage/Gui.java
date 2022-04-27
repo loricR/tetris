@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.UIManager;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -80,7 +81,7 @@ public class Gui extends JFrame {
 		//FlowLayout eFlowLayout = (FlowLayout) endPanel.getLayout();
 		//eFlowLayout.setAlignment(FlowLayout.CENTER);
 		endPanel.setLayout(new BoxLayout(endPanel, BoxLayout.Y_AXIS));
-		endPanel.setBounds(300, 60, 250, 80);
+		endPanel.setBounds(300, 60, 200, 80);
 		
 		panel = new JPanel();
 		panel.setBounds(426, 50, 125, 600);
@@ -124,16 +125,19 @@ public class Gui extends JFrame {
 		
 		//contentPane.add(nextPiecesPanel);
 		
-		tGameOver = new JLabel("GAME OVER");
+		tGameOver = new JLabel("GAME OVER !!");
 		gameOver = new JTextArea();
 		gameOver.setEnabled(false);
 		gameOver.setLineWrap(true);
 		//gameOver.setBackground(Color.WHITE);
 		//gameOver.setForeground(Color.BLACK);
 		gameOver.setDisabledTextColor(Color.BLACK);
-		tGameOver.setLabelFor(gameOver);
+		//tGameOver.setLabelFor(gameOver);
 		tGameOver.setBorder(new EmptyBorder(0, 0, 20, 0));
-		tGameOver.setBounds(10,10,100,100);
+		tGameOver.setFont(new Font("Serif", Font.BOLD, 20));
+		tGameOver.setBounds(50,0,200,100);
+		gameOver.setBounds(10,80,250,100);
+		endPanel.setLayout(null);
 		endPanel.add(tGameOver);
 		endPanel.add(gameOver);
 		//endPanel.setLayout(new FlowLayout());;

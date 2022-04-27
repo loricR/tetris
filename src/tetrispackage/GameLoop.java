@@ -237,12 +237,12 @@ public class GameLoop implements Levels {
 							}
 							else if(highScored == 1)
 							{
-								gui.displayGameOver("You have the new high score ! \r\nThe previous high score was : "+grid.getHighScore()+"\r\nYour score is : "+grid.getScore());
+								gui.displayGameOver("Congratulations ! \r\nYou have the new high score ! \r\nThe previous high score was : "+grid.getHighScore()+"\r\nYour score is : "+grid.getScore());
 								System.out.println("You have the new high score ! The previous high score was : "+grid.getHighScore());
 							}
 							else
 							{
-								gui.displayGameOver("");
+								gui.displayGameOver("Your score is : " + grid.getScore() + "\r\nYou did not beat your high score \r\nYou will do better next time \r\n \r\nPlay again by clicking on the 'Replay' button");
 							}
 							
 							//gui.playButton.setText("Replay");
