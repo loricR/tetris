@@ -159,7 +159,6 @@ public class GameLoop implements Levels {
     	gui.refreshGridGui(grid);
     	gameOver = false;
     	nextPiece.clear();
-    	level = BEGINNER;
     	this.lineLevelUp=10;
     	this.time = 0;
     	this.seconds = 0;
@@ -218,6 +217,7 @@ public class GameLoop implements Levels {
 						{
 							this.cancel();
 							gameOver = true;
+							level = BEGINNER;
 							int highScored = grid.saveHighScore();
 							if(highScored == 0)
 							{
